@@ -30,8 +30,7 @@ export function SidebarNav({
         </span>
         {!collapsed && (
           <div className="min-w-0 leading-tight">
-            <p className="truncate text-sm font-semibold text-sidebar-accent-foreground">Block Planning</p>
-            <p className="truncate text-[11px] text-sidebar-foreground/70">Indian Railways · Prototype</p>
+            <p className="truncate text-sm font-semibold tracking-[0.16em] text-sidebar-accent-foreground">YANTRANA</p>
           </div>
         )}
       </div>

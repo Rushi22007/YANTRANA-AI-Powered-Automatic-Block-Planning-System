@@ -74,7 +74,6 @@ export function DashboardView() {
       <PageHeader
         icon={LayoutDashboard}
         title="Executive Dashboard"
-        hindi="कार्यकारी डैशबोर्ड"
         description="Dataset-derived overview of maintenance demand, asset availability, corridor windows and AI-assisted planning signals."
       />
       <DataSourceNote />
@@ -82,12 +81,12 @@ export function DashboardView() {
 
       {/* KPI cards */}
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-3 xl:grid-cols-6">
-        <KpiCard label="Total Maintenance Jobs" hindi="कुल कार्य" value={model.kpis.totalJobs} icon={Wrench} tone="primary" hint="COUNT(maintenance_jobs)" />
-        <KpiCard label="Critical / High Priority" hindi="महत्वपूर्ण कार्य" value={model.kpis.criticalJobs} icon={TriangleAlert} tone="danger" hint="priority in (CRITICAL, HIGH)" />
-        <KpiCard label="Available Windows" hindi="उपलब्ध विंडो" value={model.kpis.availableWindows} icon={CalendarClock} tone="success" hint="AVAILABLE + maintenance_allowed" />
-        <KpiCard label="Asset Availability" hindi="परिसंपत्ति उपलब्धता" value={model.kpis.assetAvailability} suffix="%" icon={HeartPulse} tone="info" hint="serviceable / total assets" />
-        <KpiCard label="Conflicts Detected" hindi="टकराव" value={model.kpis.conflicts} icon={GitBranch} tone="warning" hint="across active block requests" />
-        <KpiCard label="AI Optimization Score" hindi="अनुकूलन स्कोर" value={model.kpis.optimizationScore} suffix="/100" icon={Cpu} tone="primary" hint="composite prototype score" />
+        <KpiCard label="Total Maintenance Jobs" value={model.kpis.totalJobs} icon={Wrench} tone="primary" hint="COUNT(maintenance_jobs)" />
+        <KpiCard label="Critical / High Priority" value={model.kpis.criticalJobs} icon={TriangleAlert} tone="danger" hint="priority in (CRITICAL, HIGH)" />
+        <KpiCard label="Available Windows" value={model.kpis.availableWindows} icon={CalendarClock} tone="success" hint="AVAILABLE + maintenance_allowed" />
+        <KpiCard label="Asset Availability" value={model.kpis.assetAvailability} suffix="%" icon={HeartPulse} tone="info" hint="serviceable / total assets" />
+        <KpiCard label="Conflicts Detected" value={model.kpis.conflicts} icon={GitBranch} tone="warning" hint="across active block requests" />
+        <KpiCard label="AI Optimization Score" value={model.kpis.optimizationScore} suffix="/100" icon={Cpu} tone="primary" hint="composite prototype score" />
       </div>
 
       {/* AI recommendation + optimization */}

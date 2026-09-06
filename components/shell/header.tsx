@@ -1,8 +1,7 @@
 "use client"
 
-import { Menu, PanelLeftClose, Bell, CircleUser, Languages, Accessibility } from "lucide-react"
+import { Menu, PanelLeftClose, Bell, CircleUser, Accessibility, Landmark } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,7 +11,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
-import { SyntheticBadge } from "@/components/shared/badges"
 
 export function Header({
   onToggleDesktop,
@@ -33,24 +31,25 @@ export function Header({
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2">
           <h1 className="truncate text-sm font-semibold leading-tight md:text-base">
-            <span lang="hi">AI आधारित स्वचालित ब्लॉक योजना प्रणाली</span>
+            AI Powered Automatic Block Planning System
           </h1>
-          <SyntheticBadge className="hidden lg:inline-flex" />
         </div>
         <p className="truncate text-[11px] text-muted-foreground md:text-xs">
-          AI Powered Automatic Block Planning System — Optimized Maintenance Block Planning for Maximum Asset Availability
+          Optimized Maintenance Block Planning for Maximum Asset Availability
         </p>
       </div>
 
+      <div className="hidden items-center gap-2 border-l border-border pl-4 sm:flex">
+        <span className="flex size-9 items-center justify-center rounded-md border border-primary/20 bg-primary/5 text-primary">
+          <Landmark className="size-5" />
+        </span>
+        <div className="leading-tight">
+          <p className="text-[10px] font-semibold tracking-[0.12em] text-foreground">MINISTRY OF RAILWAYS</p>
+          <p className="text-[11px] text-muted-foreground">Government of India</p>
+        </div>
+      </div>
+
       <div className="flex items-center gap-1">
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button variant="ghost" size="icon" aria-label="Language">
-              <Languages className="size-5" />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>Language: EN / हिंदी</TooltipContent>
-        </Tooltip>
         <Tooltip>
           <TooltipTrigger asChild>
             <Button variant="ghost" size="icon" aria-label="Accessibility options">
