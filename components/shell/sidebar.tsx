@@ -2,7 +2,6 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { TrainFront } from "lucide-react"
 import { NAV } from "./nav"
 import { cn } from "@/lib/utils"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
@@ -24,15 +23,14 @@ export function SidebarNav({
   return (
     <div className="flex h-full flex-col bg-sidebar text-sidebar-foreground">
       {/* Brand */}
-      <div className={cn("flex items-center gap-2.5 border-b border-sidebar-border px-4 h-16", collapsed && "justify-center px-2")}>
-        <span className="flex size-9 shrink-0 items-center justify-center rounded-md bg-sidebar-primary text-sidebar-primary-foreground">
-          <TrainFront className="size-5" />
-        </span>
-        {!collapsed && (
-          <div className="min-w-0 leading-tight">
-            <p className="truncate text-sm font-semibold tracking-[0.16em] text-sidebar-accent-foreground">YANTRANA</p>
-          </div>
-        )}
+      <div className={cn("flex h-16 items-center justify-center border-b border-sidebar-border bg-white px-3", collapsed && "px-2")}>
+        <div className="flex h-12 w-full items-center justify-center overflow-hidden rounded-md bg-white p-1.5">
+          <img
+            src="/blocs.png"
+            alt="YANTRANA BLOCS"
+            className="h-full w-full object-cover object-center"
+          />
+        </div>
       </div>
 
       {/* Nav */}

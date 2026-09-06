@@ -148,13 +148,14 @@ function candidateDuration(job: MaintenanceJob, window: CorridorAvailability): n
 function affectedTrains(movements: TrainMovement[], sectionId: string, date: string, start: string, end: string): string[] {
   const startMinutes = toMinutes(start)
   const endMinutes = toMinutes(end)
-  return movements
-    .filter((movement) =>
+  return movements.reduce<string[]>((trainIds, movement) => {
+    if (
       movement.section_id === sectionId &&
       movement.travel_date === date &&
-      intervalsOverlap(startMinutes, endMinutes, toMinutes(movement.entry_time), toMinutes(movement.exit_time)),
-    )
-    .map((movement) => movement.train_id)
+      intervalsOverlap(startMinutes, endMinutes, toMinutes(movement.entry_time), toMinutes(movement.exit_time))
+    ) trainIds.push(movement.train_id)
+    return trainIds
+  }, [])
 }
 
 /** Generate and evaluate a real-data maintenance block for a selected job/request. */

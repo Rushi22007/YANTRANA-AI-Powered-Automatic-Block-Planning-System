@@ -8,7 +8,6 @@ import { DataSourceNote } from "@/components/shared/data-source-note"
 import { KpiCard } from "@/components/shared/kpi-card"
 import { SectionCard } from "@/components/shared/section-card"
 import { AvailabilityBadge, BoolBadge, DensityBadge, MaintenanceStatusBadge, OperationalStatusBadge, PriorityBadge, RequestStatusBadge, RiskBadge, SeverityBadge } from "@/components/shared/badges"
-import { CategoryBar, SimpleBar, SimpleDonut } from "@/components/charts/charts"
 import { useDataset } from "@/lib/data/use-dataset"
 import { calculateAssetRisk, calculateBlockPerformance, assetStatusBreakdown, countByField } from "@/lib/calculations"
 import { calculateMaintenancePriority, recommendMaintenanceBlock } from "@/lib/scoring"
@@ -19,12 +18,15 @@ import { filterBlockRequests, filterJobs, filterMovements } from "@/lib/apply-fi
 import { CORRIDOR_SECTION_IDS, MUMBAI_LONAVALA_CORRIDOR } from "@/components/corridor-map/corridor-config"
 
 const RailwayMap = dynamic(() => import("@/components/corridor-map/railway-map").then((module) => module.RailwayMap), { ssr: false })
+const CategoryBar = dynamic(() => import("@/components/charts/charts").then((module) => module.CategoryBar))
+const SimpleBar = dynamic(() => import("@/components/charts/charts").then((module) => module.SimpleBar))
+const SimpleDonut = dynamic(() => import("@/components/charts/charts").then((module) => module.SimpleDonut))
 
 export type DataPage = "corridor" | "jobs" | "assets" | "equipment" | "priority" | "planner" | "conflicts" | "requests" | "schedule" | "historical" | "trains" | "movements" | "reports" | "settings"
 type Cell = React.ReactNode
 
 function DataTable({ headers, rows }: { headers: string[]; rows: Cell[][] }) {
-  return <div className="overflow-x-auto"><table className="w-full text-sm"><thead><tr className="border-b">{headers.map((header) => <th key={header} className="h-10 px-2 text-left font-medium whitespace-nowrap">{header}</th>)}</tr></thead><tbody>{rows.length ? rows.map((row, index) => <tr key={index} className="border-b transition-colors hover:bg-muted/50">{row.map((cell, cellIndex) => <td key={cellIndex} className="p-2 whitespace-nowrap">{cell}</td>)}</tr>) : <tr><td colSpan={headers.length} className="py-8 text-center text-muted-foreground">No matching records</td></tr>}</tbody></table></div>
+  return <div className="overflow-x-auto"><table className="w-full text-sm"><thead><tr className="border-b">{headers.map((header) => <th key={header} className="h-10 px-2 text-left font-medium whitespace-nowrap">{header}</th>)}</tr></thead><tbody>{rows.length ? rows.map((row) => { const rowKey = row.map((cell, cellIndex) => typeof cell === "string" || typeof cell === "number" ? `${headers[cellIndex]}:${cell}` : "").filter(Boolean).join("|"); return <tr key={rowKey} className="border-b transition-colors hover:bg-muted/50">{row.map((cell, cellIndex) => <td key={headers[cellIndex]} className="p-2 whitespace-nowrap">{cell}</td>)}</tr> }) : <tr><td colSpan={headers.length} className="py-8 text-center text-muted-foreground">No matching records</td></tr>}</tbody></table></div>
 }
 
 function Filters({ search, setSearch, fields, values, setValue }: { search?: string; setSearch?: (value: string) => void; fields: { label: string; key: string; options: string[] }[]; values: Record<string, string>; setValue: (key: string, value: string) => void }) {

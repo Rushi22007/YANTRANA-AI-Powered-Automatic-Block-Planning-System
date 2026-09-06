@@ -26,7 +26,10 @@ function label(value: string | number | undefined): string {
 
 export function RailwayMap({ sections, jobs, requests, movements, conflicts }: RailwayMapProps) {
   const visibleSections = MUMBAI_LONAVALA_CORRIDOR.filter((section) => sections.includes(section.id))
-  const stations = [...new Map(visibleSections.flatMap((section) => section.stations).map((station) => [station.name, station])).values()]
+  const stations = Array.from(visibleSections.reduce((uniqueStations, section) => {
+    section.stations.forEach((station) => uniqueStations.set(station.name, station))
+    return uniqueStations
+  }, new Map<string, (typeof visibleSections)[number]["stations"][number]>()).values())
   const jobsWithoutRequest = jobs.filter((job) => !requests.some((request) => request.job_id === job.job_id))
 
   return (

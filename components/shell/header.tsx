@@ -20,39 +20,39 @@ export function Header({
   onToggleMobile: () => void
 }) {
   return (
-    <header className="sticky top-0 z-30 flex h-16 items-center gap-3 border-b border-border bg-card/95 px-3 backdrop-blur supports-[backdrop-filter]:bg-card/80 md:px-5">
-      <Button variant="ghost" size="icon" className="md:hidden" onClick={onToggleMobile} aria-label="Open navigation">
+    <header className="sticky top-0 z-30 flex h-16 items-center gap-3 border-b border-sidebar-border bg-sidebar px-3 text-sidebar-foreground backdrop-blur supports-[backdrop-filter]:bg-sidebar/95 md:px-5">
+      <Button variant="ghost" size="icon" className="text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground md:hidden" onClick={onToggleMobile} aria-label="Open navigation">
         <Menu className="size-5" />
       </Button>
-      <Button variant="ghost" size="icon" className="hidden md:inline-flex" onClick={onToggleDesktop} aria-label="Toggle sidebar">
+      <Button variant="ghost" size="icon" className="hidden text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground md:inline-flex" onClick={onToggleDesktop} aria-label="Toggle sidebar">
         <PanelLeftClose className="size-5" />
       </Button>
 
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2">
-          <h1 className="truncate text-sm font-semibold leading-tight md:text-base">
+          <h1 className="truncate text-sm font-semibold leading-tight text-sidebar-accent-foreground md:text-base">
             AI Powered Automatic Block Planning System
           </h1>
         </div>
-        <p className="truncate text-[11px] text-muted-foreground md:text-xs">
+        <p className="truncate text-[11px] text-sidebar-foreground/70 md:text-xs">
           Optimized Maintenance Block Planning for Maximum Asset Availability
         </p>
       </div>
 
-      <div className="hidden items-center gap-2 border-l border-border pl-4 sm:flex">
-        <span className="flex size-9 items-center justify-center rounded-md border border-primary/20 bg-primary/5 text-primary">
+      <div className="hidden items-center gap-2 border-l border-sidebar-border pl-4 sm:flex">
+        <span className="flex size-9 items-center justify-center rounded-md border border-sidebar-border bg-sidebar-accent text-sidebar-primary">
           <Landmark className="size-5" />
         </span>
         <div className="leading-tight">
-          <p className="text-[10px] font-semibold tracking-[0.12em] text-foreground">MINISTRY OF RAILWAYS</p>
-          <p className="text-[11px] text-muted-foreground">Government of India</p>
+          <p className="text-[10px] font-semibold tracking-[0.12em] text-sidebar-accent-foreground">MINISTRY OF RAILWAYS</p>
+          <p className="text-[11px] text-sidebar-foreground/70">Government of India</p>
         </div>
       </div>
 
       <div className="flex items-center gap-1">
         <Tooltip>
           <TooltipTrigger asChild>
-            <Button variant="ghost" size="icon" aria-label="Accessibility options">
+            <Button variant="ghost" size="icon" className="text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground" aria-label="Accessibility options">
               <Accessibility className="size-5" />
             </Button>
           </TooltipTrigger>
@@ -61,7 +61,7 @@ export function Header({
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="icon" className="relative" aria-label="Notifications">
+            <Button variant="ghost" size="icon" className="relative text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground" aria-label="Notifications">
               <Bell className="size-5" />
               <span className="absolute right-1.5 top-1.5 size-2 rounded-full bg-danger" />
             </Button>
@@ -84,11 +84,11 @@ export function Header({
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-10 gap-2 px-2">
-              <CircleUser className="size-6 text-muted-foreground" />
+            <Button variant="ghost" className="h-10 gap-2 px-2 text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
+              <CircleUser className="size-6 text-sidebar-foreground/70" />
               <span className="hidden text-left leading-tight sm:block">
                 <span className="block text-sm font-medium">Admin</span>
-                <span className="block text-[11px] text-muted-foreground">Super Administrator</span>
+                <span className="block text-[11px] text-sidebar-foreground/70">Super Administrator</span>
               </span>
             </Button>
           </DropdownMenuTrigger>
@@ -110,5 +110,5 @@ export function Header({
 }
 
 function Separator() {
-  return <span className="mx-1 hidden h-6 w-px bg-border sm:block" />
+  return <span className="mx-1 hidden h-6 w-px bg-sidebar-border sm:block" />
 }

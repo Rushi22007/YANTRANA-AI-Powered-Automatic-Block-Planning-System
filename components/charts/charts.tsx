@@ -24,6 +24,11 @@ const CHART_COLORS = [
   "var(--chart-5)",
 ]
 
+function chartColor(value: string): string {
+  const hash = [...value].reduce((total, character) => total + character.charCodeAt(0), 0)
+  return CHART_COLORS[hash % CHART_COLORS.length]
+}
+
 const axisProps = {
   stroke: "var(--muted-foreground)",
   fontSize: 11,
@@ -82,8 +87,8 @@ export function SimpleBar({
         )}
         <Tooltip cursor={{ fill: "var(--muted)", opacity: 0.5 }} {...tooltipStyle} />
         {bars.length > 1 ? <Legend wrapperStyle={{ fontSize: 11 }} /> : null}
-        {bars.map((b, i) => (
-          <Bar key={b.key} dataKey={b.key} name={b.name} fill={b.color ?? CHART_COLORS[i % CHART_COLORS.length]} radius={horizontal ? [0, 4, 4, 0] : [4, 4, 0, 0]} maxBarSize={44} />
+        {bars.map((bar) => (
+          <Bar key={bar.key} dataKey={bar.key} name={bar.name} fill={bar.color ?? chartColor(bar.key)} radius={horizontal ? [0, 4, 4, 0] : [4, 4, 0, 0]} maxBarSize={44} />
         ))}
       </BarChart>
     </ResponsiveContainer>
@@ -108,8 +113,8 @@ export function CategoryBar({
         <YAxis {...axisProps} allowDecimals={false} />
         <Tooltip cursor={{ fill: "var(--muted)", opacity: 0.5 }} {...tooltipStyle} />
         <Bar dataKey="value" radius={[4, 4, 0, 0]} maxBarSize={48}>
-          {data.map((d, i) => (
-            <Cell key={i} fill={colorMap?.[d.name] ?? CHART_COLORS[i % CHART_COLORS.length]} />
+          {data.map((datum) => (
+            <Cell key={datum.name} fill={colorMap?.[datum.name] ?? chartColor(datum.name)} />
           ))}
         </Bar>
       </BarChart>
@@ -131,8 +136,8 @@ export function SimpleDonut({
     <ResponsiveContainer width="100%" height={height}>
       <PieChart>
         <Pie data={data} dataKey="value" nameKey="name" innerRadius="55%" outerRadius="80%" paddingAngle={2} stroke="var(--card)">
-          {data.map((d, i) => (
-            <Cell key={i} fill={colorMap?.[d.name] ?? CHART_COLORS[i % CHART_COLORS.length]} />
+          {data.map((datum) => (
+            <Cell key={datum.name} fill={colorMap?.[datum.name] ?? chartColor(datum.name)} />
           ))}
         </Pie>
         <Tooltip {...tooltipStyle} />
