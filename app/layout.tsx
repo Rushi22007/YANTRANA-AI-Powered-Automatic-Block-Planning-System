@@ -12,6 +12,12 @@ const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mon
 export const metadata: Metadata = {
   title: 'AI Powered Automatic Block Planning System',
   description:
+    'Decision-support prototype for AI-assisted railway maintenance block planning - assets, equipment, and constraints.',
+};
+
+/*export const metadata: Metadata = {
+  title: 'AI Powered Automatic Block Planning System',
+  description:
     'Decision-support prototype for AI-assisted railway maintenance block planning — assets, equipment, corridor availability, train movements and conflict analysis.',
   generator: 'v0.app',
   icons: {
@@ -22,7 +28,7 @@ export const metadata: Metadata = {
     ],
     apple: '/apple-icon.png',
   },
-}
+}*/
 
 export const viewport: Viewport = {
   colorScheme: 'light dark',
@@ -40,7 +46,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-background">
       <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
-        <TooltipProvider delayDuration={200}>
+        <TooltipProvider>
           <FiltersProvider>
             <AppShell>{children}</AppShell>
           </FiltersProvider>
