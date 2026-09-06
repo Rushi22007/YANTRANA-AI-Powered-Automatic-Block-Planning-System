@@ -8,6 +8,7 @@ import {
   CalendarClock,
   GitBranch,
   ClipboardList,
+  ClipboardCheck,
   CalendarRange,
   History,
   TrainFront,
@@ -40,6 +41,7 @@ export const NAV: NavGroup[] = [
     label: "Maintenance",
     items: [
       { label: "Maintenance Jobs", href: "/maintenance/jobs", icon: Wrench },
+      { label: "Maintenance Requests", href: "/maintenance/requests", icon: ClipboardCheck },
       { label: "Asset Health", href: "/maintenance/asset-health", icon: HeartPulse },
       { label: "Equipment Availability", href: "/maintenance/equipment", icon: Boxes },
     ],
