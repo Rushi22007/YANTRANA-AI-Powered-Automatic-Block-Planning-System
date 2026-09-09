@@ -1,3 +1,4 @@
+@import "https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Noto+Sans+Display:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap";
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
@@ -6,8 +7,10 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Noto Sans', 'Noto Sans Devanagari', var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
+  --font-display: 'Noto Sans Display', 'Noto Sans', system-ui, sans-serif;
   --font-mono: var(--font-mono-jb), ui-monospace, monospace;
+  --font-slab: 'Roboto Slab', serif;
 
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -60,6 +63,45 @@
 :root {
   color-scheme: light;
   --radius: 0.5rem;
+
+  /* ── UX4G Design System 3.0 Official Government of India Tokens ── */
+  --ux4g-color-brand-primary: #4a2bc2;
+  --ux4g-color-brand-primary-hover: #3d239f;
+  --ux4g-color-brand-secondary: #ff7700;
+  --ux4g-color-brand-tertiary: #008800;
+  --ux4g-color-brand-navy: #0B4182;
+  --ux4g-color-text-primary: #171717;
+  --ux4g-color-text-secondary: #525252;
+  --ux4g-color-text-tertiary: #737373;
+  --ux4g-color-background-primary: #ffffff;
+  --ux4g-color-background-secondary: #fafafa;
+  --ux4g-color-background-tertiary: #f5f5f5;
+  --ux4g-color-border-default: #e5e5e5;
+  --ux4g-color-border-hover: #a3a3a3;
+  --ux4g-color-border-focus: #4a2bc2;
+  --ux4g-color-feedback-success: #008800;
+  --ux4g-color-feedback-warning: #cc5f00;
+  --ux4g-color-feedback-error: #dc2626;
+  --ux4g-color-feedback-info: #4a2bc2;
+
+  /* ── Official Indian Railways & Ministry of Railways Color Palette ── */
+  /* Sourced directly from indianrailways.gov.in, fois.indianrail.gov.in & cris.org.in */
+  --railways-blue: #146696;         /* Official Indian Railways Header Steel Blue */
+  --railways-blue-deep: #135287;    /* Official Indian Railways H3 / Section Heading Blue */
+  --railways-navy: #0B4182;         /* Ministry of Railways Ashoka Navy */
+  --railways-maroon: #800000;       /* Indian Railways Heritage Locomotive Maroon */
+  --railways-crimson: #C20E39;      /* FOIS / Indian Railways Coach Crimson */
+  --railways-gold: #D4AF37;         /* State Crest & Golden Braid Gold */
+  --railways-gold-light: #FDE047;   /* Ashoka Chakra & Star Motif Highlight */
+  --railways-border-subtle: #C7D6E2;/* Official Portal Divider & Border */
+  --railways-link-hover: #FF3333;   /* Official Portal Link Hover Red */
+  --railways-light-bg: #F8FAFC;     /* Official Clean Content Background */
+
+  /* ── Government of India National Tricolor Tokens ── */
+  --gov-saffron: #FF9933;
+  --gov-white: #FFFFFF;
+  --gov-green: #138808;
+  --gov-navy: #000080;
 
   --background: oklch(0.985 0.004 250);
   --foreground: oklch(0.24 0.03 260);
@@ -164,3 +206,157 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* ── Entrance animation for KPI cards ── */
+@keyframes fade-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-slide-up {
+  animation: fade-slide-up 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* stagger children */
+.animate-fade-slide-up:nth-child(1) { animation-delay: 0ms; }
+.animate-fade-slide-up:nth-child(2) { animation-delay: 60ms; }
+.animate-fade-slide-up:nth-child(3) { animation-delay: 120ms; }
+.animate-fade-slide-up:nth-child(4) { animation-delay: 180ms; }
+.animate-fade-slide-up:nth-child(5) { animation-delay: 240ms; }
+.animate-fade-slide-up:nth-child(6) { animation-delay: 300ms; }
+
+/* ── Subtle live-value pulse ── */
+@keyframes value-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.75; }
+}
+
+.animate-value-pulse {
+  animation: value-pulse 3s ease-in-out infinite;
+}
+
+/* ── Glassmorphism card hover ── */
+.glass-card {
+  transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+}
+
+.glass-card:hover {
+  box-shadow: 0 4px 24px -4px oklch(0.42 0.11 258 / 0.10),
+              0 0 0 1px oklch(0.42 0.11 258 / 0.08);
+  border-color: oklch(0.42 0.11 258 / 0.18);
+}
+
+.dark .glass-card:hover {
+  box-shadow: 0 4px 24px -4px oklch(0.62 0.13 255 / 0.15),
+              0 0 0 1px oklch(0.62 0.13 255 / 0.12);
+  border-color: oklch(0.62 0.13 255 / 0.22);
+}
+
+/* ── KPI card hover lift ── */
+.kpi-hover {
+  transition: transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+.kpi-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px -6px oklch(0.42 0.11 258 / 0.12);
+}
+
+.dark .kpi-hover:hover {
+  box-shadow: 0 6px 20px -6px oklch(0.62 0.13 255 / 0.18);
+}
+
+/* ── Animated gradient shimmer for the header bar ── */
+@keyframes header-shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.header-gradient {
+  background: linear-gradient(
+    135deg,
+    oklch(0.22 0.04 262) 0%,
+    oklch(0.28 0.05 258) 30%,
+    oklch(0.24 0.045 265) 60%,
+    oklch(0.22 0.04 262) 100%
+  );
+  background-size: 200% 200%;
+  animation: header-shimmer 12s ease infinite;
+}
+
+.dark .header-gradient {
+  background: linear-gradient(
+    135deg,
+    oklch(0.14 0.02 262) 0%,
+    oklch(0.18 0.03 258) 30%,
+    oklch(0.15 0.025 265) 60%,
+    oklch(0.14 0.02 262) 100%
+  );
+  background-size: 200% 200%;
+  animation: header-shimmer 12s ease infinite;
+}
+
+/* ── UX4G Government of India Standard Tricolor Ribbon ── */
+.ux4g-tricolor-strip {
+  height: 4px;
+  width: 100%;
+  background: linear-gradient(
+    to right,
+    #FF9933 0%,
+    #FF9933 33.33%,
+    #FFFFFF 33.33%,
+    #FFFFFF 66.66%,
+    #138808 66.66%,
+    #138808 100%
+  );
+}
+
+.ux4g-tricolor-gradient {
+  height: 3px;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    #FF9933 0%,
+    #FFB366 25%,
+    #FFFFFF 50%,
+    #5CD65C 75%,
+    #138808 100%
+  );
+}
+
+/* ── UX4G High Contrast Accessibility Mode ── */
+[data-contrast="high"] {
+  --background: #000000;
+  --foreground: #ffffff;
+  --card: #0a0a0a;
+  --card-foreground: #ffffff;
+  --border: #ffffff;
+  --input: #ffffff;
+  --primary: #ffff00;
+  --primary-foreground: #000000;
+}
+
+[data-contrast="high"] .glass-card,
+[data-contrast="high"] .bg-white {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+
+[data-contrast="high"] text {
+  fill: #ffffff !important;
+}
+
+/* ── UX4G Focus Ring ── */
+.ux4g-focus-ring:focus-visible {
+  outline: 2px solid #4a2bc2;
+  outline-offset: 2px;
+}
+

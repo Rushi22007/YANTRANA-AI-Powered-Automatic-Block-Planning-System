@@ -1,8 +1,8 @@
 import type { DataSourceMeta } from "./source"
 
 export const DATA_SOURCE_META: DataSourceMeta = {
-  kind: "csv",
-  label: "Local CSV Data",
-  description: "Dataset loaded from the eight local CSV files in lib/data/.",
+  kind: "json",
+  label: "Pre-processed JSON Data",
+  description: "Dataset loaded from pre-processed JSON files in public/data/ (converted from CSV).",
   generatedAt: new Date().toISOString(),
 }

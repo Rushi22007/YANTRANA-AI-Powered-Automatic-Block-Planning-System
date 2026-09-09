@@ -22,7 +22,6 @@ export interface Asset {
   next_due_date: string
   failure_history_count: number
   operational_status: string
-  synthetic_flag: string
 }
 
 // equipment_availability.csv
@@ -36,7 +35,6 @@ export interface EquipmentAvailability {
   available_end: string
   quantity: number
   availability_status: string
-  synthetic_flag: string
 }
 
 // trains.csv
@@ -48,7 +46,6 @@ export interface Train {
   direction: string
   priority_class: string
   running_days: string
-  flag: string
 }
 
 // train_movements.csv
@@ -84,7 +81,6 @@ export interface MaintenanceJob {
   safety_buffer_before: number
   safety_buffer_after: number
   maintenance_status: string
-  synthetic_flag: string
 }
 
 // block_requests.csv
@@ -103,7 +99,6 @@ export interface BlockRequest {
   equipment_required: string
   dependency: string
   request_status: string
-  synthetic_flag: string
 }
 
 // historical_blocks.csv
@@ -122,7 +117,6 @@ export interface HistoricalBlock {
   actual_delay_minutes: number
   block_utilization_percent: number
   completion_status: string
-  synthetic_flag: string
 }
 
 // corridor_availability.csv
@@ -136,7 +130,6 @@ export interface CorridorAvailability {
   reason: string
   train_density: string
   maintenance_allowed: string
-  synthetic_flag: string
 }
 
 export interface Dataset {

@@ -55,13 +55,13 @@ export function AiRecommendation({ dataset }: { dataset: Dataset }) {
       </div>
 
       <div className="grid gap-2 sm:grid-cols-2">
-        <Select value={activeJob.job_id} onValueChange={(value) => { setSelectedJobId(value); setSelectedRequestId("") }}>
+        <Select value={activeJob.job_id} onValueChange={(value) => { setSelectedJobId(value ?? ""); setSelectedRequestId("") }}>
           <SelectTrigger className="w-full"><SelectValue placeholder="Select maintenance job" /></SelectTrigger>
           <SelectContent>
             {dataset.maintenance_jobs.map((item) => <SelectItem key={item.job_id} value={item.job_id}>{item.job_id} · {item.work_type}</SelectItem>)}
           </SelectContent>
         </Select>
-        <Select value={selectedRequest?.request_id ?? "NONE"} onValueChange={(value) => setSelectedRequestId(value === "NONE" ? "" : value)}>
+        <Select value={selectedRequest?.request_id ?? "NONE"} onValueChange={(value) => setSelectedRequestId(value === "NONE" || value === null ? "" : value)}>
           <SelectTrigger className="w-full"><SelectValue placeholder="Select block request" /></SelectTrigger>
           <SelectContent>
             <SelectItem value="NONE">No linked request</SelectItem>

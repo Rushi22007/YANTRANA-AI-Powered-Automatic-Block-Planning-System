@@ -2,78 +2,92 @@ import {
   LayoutDashboard,
   Map,
   Wrench,
-  HeartPulse,
-  Boxes,
+  Package,
+  Layers,
+  ShieldAlert,
+  GitMerge,
   Cpu,
-  CalendarClock,
-  GitBranch,
-  ClipboardList,
-  ClipboardCheck,
   CalendarRange,
-  History,
-  TrainFront,
-  Route,
+  AlertTriangle,
+  FileCheck2,
+  PlayCircle,
+  RefreshCw,
+  CalendarDays,
   BarChart3,
-  Settings,
+  Database,
+  ScrollText,
+  ShieldCheck,
   type LucideIcon,
 } from "lucide-react"
 
 export interface NavItem {
-  label: string
+  labelEn: string
+  labelHi: string
   href: string
   icon: LucideIcon
+  badge?: string
+  stepNumber?: number
 }
 
 export interface NavGroup {
-  label: string | null
+  labelEn: string | null
+  labelHi?: string | null
   items: NavItem[]
 }
 
-export const NAV: NavGroup[] = [
+export const NAV_CONFIG: NavGroup[] = [
   {
-    label: null,
+    labelEn: "COMMAND & CORRIDOR",
+    labelHi: "कमांड और कॉरिडोर",
     items: [
-      { label: "Dashboard", href: "/", icon: LayoutDashboard },
-      { label: "Corridor Map", href: "/corridor-map", icon: Map },
+      { labelEn: "Dashboard", labelHi: "डैशबोर्ड", href: "/dashboard", icon: LayoutDashboard },
+      { labelEn: "Corridor Map", labelHi: "कॉरिडोर मानचित्र", href: "/corridor-map", icon: Map },
     ],
   },
   {
-    label: "Maintenance",
+    labelEn: "MAINTENANCE PIPELINE",
+    labelHi: "रखरखाव पाइपलाइन",
     items: [
-      { label: "Maintenance Jobs", href: "/maintenance/jobs", icon: Wrench },
-      { label: "Maintenance Requests", href: "/maintenance/requests", icon: ClipboardCheck },
-      { label: "Asset Health", href: "/maintenance/asset-health", icon: HeartPulse },
-      { label: "Equipment Availability", href: "/maintenance/equipment", icon: Boxes },
+      { labelEn: "Maintenance Tasks", labelHi: "रखरखाव कार्य", href: "/maintenance", icon: Wrench, stepNumber: 1 },
+      { labelEn: "Work Packages", labelHi: "कार्य पैकेज", href: "/work-packages", icon: Package, stepNumber: 2 },
+      { labelEn: "Common View", labelHi: "साझा दृश्य", href: "/common-view", icon: Layers, stepNumber: 3, badge: "Crucial" },
     ],
   },
   {
-    label: "AI Planning",
+    labelEn: "AI REASONING & PLANNING",
+    labelHi: "एआई तर्क और योजना",
     items: [
-      { label: "AI Priority Engine", href: "/planning/priority-engine", icon: Cpu },
-      { label: "Block Planner", href: "/planning/block-planner", icon: CalendarClock },
-      { label: "Conflict Management", href: "/planning/conflicts", icon: GitBranch },
+      { labelEn: "Constraints", labelHi: "बाधाएं", href: "/constraints", icon: ShieldAlert, stepNumber: 4 },
+      { labelEn: "Compatibility", labelHi: "अनुकूलता", href: "/compatibility", icon: GitMerge, stepNumber: 5 },
+      { labelEn: "AI Block Planner", labelHi: "AI ब्लॉक योजनाकार", href: "/planner", icon: Cpu, stepNumber: 6 },
+      { labelEn: "Conflict Management", labelHi: "टकराव प्रबंधन", href: "/conflicts", icon: AlertTriangle },
     ],
   },
   {
-    label: "Blocks",
+    labelEn: "GOVERNANCE & EXECUTION",
+    labelHi: "शासन और निष्पादन",
     items: [
-      { label: "Block Requests", href: "/blocks/requests", icon: ClipboardList },
-      { label: "Block Schedule", href: "/blocks/schedule", icon: CalendarRange },
-      { label: "Historical Blocks", href: "/blocks/historical", icon: History },
+      { labelEn: "Approvals", labelHi: "अनुमोदन (मानव)", href: "/approvals", icon: FileCheck2, stepNumber: 8, badge: "Mandatory" },
+      { labelEn: "Execution Tracking", labelHi: "निष्पादन", href: "/execution", icon: PlayCircle, stepNumber: 9 },
+      { labelEn: "Disruption / Re-Plan", labelHi: "पुनर्योजना", href: "/replan", icon: RefreshCw, stepNumber: 10, badge: "Dynamic" },
+      { labelEn: "Authority Matrix", labelHi: "अधिकार मैट्रिक्स", href: "/authority-matrix", icon: ShieldCheck, badge: "RBAC" },
     ],
   },
   {
-    label: "Train Operations",
+    labelEn: "SCHEDULES & CALENDARS",
+    labelHi: "शेड्यूल और कैलेंडर",
     items: [
-      { label: "Train Overview", href: "/trains/overview", icon: TrainFront },
-      { label: "Train Movements", href: "/trains/movements", icon: Route },
+      { labelEn: "Weekly Schedule (Gantt)", labelHi: "शेड्यूल (गैंट)", href: "/weekly-plan", icon: CalendarRange },
+      { labelEn: "Monthly Plan", labelHi: "मासिक योजना", href: "/monthly-plan", icon: CalendarDays },
     ],
   },
   {
-    label: null,
+    labelEn: "INTELLIGENCE & AUDIT",
+    labelHi: "एकीकरण और ऑडिट",
     items: [
-      { label: "Reports & Analytics", href: "/reports", icon: BarChart3 },
-      { label: "Settings", href: "/settings", icon: Settings },
+      { labelEn: "Reports & Analytics", labelHi: "रिपोर्ट और विश्लेषण", href: "/analytics", icon: BarChart3 },
+      { labelEn: "Data Integration", labelHi: "डेटा एकीकरण", href: "/integration", icon: Database, badge: "Adapters" },
+      { labelEn: "Audit Trail Log", labelHi: "ऑडिट लॉग", href: "/audit", icon: ScrollText },
     ],
   },
 ]

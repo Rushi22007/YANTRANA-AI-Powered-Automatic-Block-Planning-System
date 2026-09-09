@@ -20,7 +20,7 @@ export function SectionCard({
   children: React.ReactNode
 }) {
   return (
-    <Card className={cn("flex flex-col gap-3 p-4", className)}>
+    <Card className={cn("glass-card flex flex-col gap-3 p-4", className)}>
       <div className="flex items-start justify-between gap-2">
         <div className="flex items-center gap-2">
           {Icon ? (

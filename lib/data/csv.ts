@@ -114,7 +114,6 @@ export function loadCsvDataset(): Dataset {
     next_due_date: dateValue(row.next_due_date),
     failure_history_count: numberValue(row.failure_history_count),
     operational_status: row.operational_status.toUpperCase(),
-    synthetic_flag: booleanValue(row.synthetic_flag),
   }))
 
   const equipment_availability: EquipmentAvailability[] = readRows("equipment_availability.csv").map((row) => ({
@@ -127,7 +126,6 @@ export function loadCsvDataset(): Dataset {
     available_end: timeValue(row.available_end),
     quantity: numberValue(row.quantity),
     availability_status: row.availability_status.toUpperCase(),
-    synthetic_flag: booleanValue(row.synthetic_flag),
   }))
 
   const trains: Train[] = readRows("trains.csv").map((row) => ({
@@ -138,7 +136,6 @@ export function loadCsvDataset(): Dataset {
     direction: row.direction.toUpperCase(),
     priority_class: row.priority_class.toUpperCase(),
     running_days: row.running_days.toUpperCase(),
-    flag: booleanValue(row.flag),
   }))
 
   const train_movements: TrainMovement[] = readRows("train_movements.csv").map((row) => ({
@@ -172,7 +169,6 @@ export function loadCsvDataset(): Dataset {
     safety_buffer_before: numberValue(row.safety_buffer_before),
     safety_buffer_after: numberValue(row.safety_buffer_after),
     maintenance_status: row.maintenance_status.toUpperCase(),
-    synthetic_flag: booleanValue(row.synthetic_flag),
   }))
 
   const block_requests: BlockRequest[] = readRows("block_requests.csv").map((row) => ({
@@ -190,7 +186,6 @@ export function loadCsvDataset(): Dataset {
     equipment_required: row.equipment_required,
     dependency: row.dependency,
     request_status: row.request_status.toUpperCase(),
-    synthetic_flag: booleanValue(row.synthetic_flag),
   }))
 
   const historical_blocks: HistoricalBlock[] = readRows("historical_blocks.csv").map((row) => ({
@@ -208,7 +203,6 @@ export function loadCsvDataset(): Dataset {
     actual_delay_minutes: numberValue(row.actual_delay_minutes),
     block_utilization_percent: numberValue(row.block_utilization_percent),
     completion_status: row.completion_status.toUpperCase(),
-    synthetic_flag: booleanValue(row.synthetic_flag),
   }))
 
   const corridor_availability: CorridorAvailability[] = readRows("corridor_availability.csv").map((row) => ({
@@ -221,7 +215,6 @@ export function loadCsvDataset(): Dataset {
     reason: row.reason,
     train_density: row.train_density.toUpperCase(),
     maintenance_allowed: booleanValue(row.maintenance_allowed),
-    synthetic_flag: booleanValue(row.synthetic_flag),
   }))
 
   return {

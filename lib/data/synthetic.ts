@@ -103,7 +103,6 @@ function buildAssets(): Asset[] {
         next_due_date: iso(addDays(TODAY, dueOffset)),
         failure_history_count: failures,
         operational_status,
-        synthetic_flag: "TRUE",
       })
       n++
     }
@@ -133,7 +132,6 @@ function buildEquipment(): EquipmentAvailability[] {
         available_end: toTime(endMin),
         quantity: status === "UNAVAILABLE" ? 0 : int(1, 4),
         availability_status: status,
-        synthetic_flag: "TRUE",
       })
       n++
     }
@@ -161,7 +159,6 @@ function buildTrains(): Train[] {
       direction: up ? "UP" : "DOWN",
       priority_class: priorityByType[train_type],
       running_days: chance(0.6) ? "Daily" : "Mon-Sat",
-      flag: "SYNTHETIC",
     })
   }
   return rows
@@ -234,7 +231,6 @@ function buildMaintenanceJobs(assets: Asset[]): MaintenanceJob[] {
       safety_buffer_before: pick([10, 15, 20, 30]),
       safety_buffer_after: pick([10, 15, 20, 30]),
       maintenance_status: pick(statuses),
-      synthetic_flag: "TRUE",
     })
     n++
   }
@@ -272,7 +268,6 @@ function buildBlockRequests(jobs: MaintenanceJob[]): BlockRequest[] {
       equipment_required: job.equipment_required,
       dependency: chance(0.2) ? `JOB-${pad(int(1, jobs.length))}` : "NONE",
       request_status: pick(statuses),
-      synthetic_flag: "TRUE",
     })
     n++
   }
@@ -311,7 +306,6 @@ function buildHistoricalBlocks(): HistoricalBlock[] {
       actual_delay_minutes: actDelay,
       block_utilization_percent: util,
       completion_status: completion,
-      synthetic_flag: "TRUE",
     })
     n++
   }
@@ -347,7 +341,6 @@ function buildCorridorAvailability(): CorridorAvailability[] {
           reason: pick(reasons[status]),
           train_density: density,
           maintenance_allowed,
-          synthetic_flag: "TRUE",
         })
         n++
       }

@@ -4,6 +4,7 @@ import { Inter, JetBrains_Mono } from 'next/font/google'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { FiltersProvider } from '@/lib/filters'
 import { AppShell } from '@/components/shell/app-shell'
+import { RailMitraProvider } from '@/lib/railmitra/context/railmitra-context'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
@@ -48,7 +49,9 @@ export default function RootLayout({
       <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
         <TooltipProvider>
           <FiltersProvider>
-            <AppShell>{children}</AppShell>
+            <RailMitraProvider>
+              <AppShell>{children}</AppShell>
+            </RailMitraProvider>
           </FiltersProvider>
         </TooltipProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}

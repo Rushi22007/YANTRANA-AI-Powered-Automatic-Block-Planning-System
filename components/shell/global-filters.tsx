@@ -76,7 +76,7 @@ export function GlobalFilters({ fields }: { fields?: (keyof GlobalFilters)[] }) 
         ) : null}
       </div>
       {visible.map((f) => (
-        <Select key={f.key} value={filters[f.key]} onValueChange={(v) => setFilter(f.key, v)}>
+        <Select key={f.key} value={filters[f.key]} onValueChange={(v) => setFilter(f.key, v ?? ALL)}>
           <SelectTrigger size="sm" className="h-8 w-[140px] text-xs">
             <span className="text-muted-foreground">{f.label}:</span>
             <SelectValue />

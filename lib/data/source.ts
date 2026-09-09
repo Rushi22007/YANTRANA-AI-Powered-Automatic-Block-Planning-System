@@ -14,9 +14,9 @@
  */
 import type { Dataset } from "./schema"
 import { DATA_SOURCE_META } from "./meta"
-import { loadCsvDataset } from "./csv"
+import { loadJsonDataset } from "./json"
 
-export type DataSourceKind = "synthetic" | "csv" | "postgres" | "api"
+export type DataSourceKind = "synthetic" | "csv" | "json" | "postgres" | "api"
 
 export interface DataSourceMeta {
   kind: DataSourceKind
@@ -34,7 +34,7 @@ let datasetCache: Dataset | null = null
  */
 export function loadDataset(): Dataset {
   if (!datasetCache) {
-    datasetCache = loadCsvDataset()
+    datasetCache = loadJsonDataset()
   }
   return datasetCache
 }

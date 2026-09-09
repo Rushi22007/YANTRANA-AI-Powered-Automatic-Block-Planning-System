@@ -23,7 +23,7 @@ const toneRing: Record<NonNullable<KpiCardProps["tone"]>, string> = {
 export function KpiCard({ label, hindi, value, suffix = "", icon: Icon, hint, tone = "primary" }: KpiCardProps) {
   const missing = value === null || value === undefined || (typeof value === "number" && Number.isNaN(value))
   return (
-    <Card className="flex flex-col gap-3 p-4">
+    <Card className="animate-fade-slide-up kpi-hover flex flex-col gap-3 p-4">
       <div className="flex items-start justify-between gap-2">
         <div className="min-w-0">
           <p className="text-xs font-medium text-muted-foreground leading-tight">{label}</p>
