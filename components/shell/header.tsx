@@ -12,7 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { RailRajbhashaTicker } from "@/components/government/rail-rajbhasha-ticker"
-import { useRailMitra } from "@/lib/yentrana/context/yentrana -context"
+import { useRailMitra } from "@/lib/yentrana/context/yentrana-context"
 import { MOCK_USER_PERSONAS } from "@/lib/yentrana/data/mock-data"
 import type { UserRole } from "@/lib/yentrana/types"
 

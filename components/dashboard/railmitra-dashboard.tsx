@@ -20,7 +20,7 @@ import {
   Clock,
   ExternalLink,
 } from "lucide-react"
-import { useRailMitra } from "@/lib/yentrana/context/yentrana -context"
+import { useRailMitra } from "@/lib/yentrana/context/yentrana-context"
 import { MOCK_MAINTENANCE_NEEDS } from "@/lib/yentrana/data/mock-data"
 import type { Priority } from "@/lib/yentrana/types"
 

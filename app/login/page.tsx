@@ -8,7 +8,7 @@ import {
   Ux4gLogo,
   SihLogo,
 } from "@/components/government/emblems"
-import { useRailMitra } from "@/lib/yentrana/context/yentrana -context"
+import { useRailMitra } from "@/lib/yentrana/context/yentrana-context"
 import { MOCK_USER_PERSONAS } from "@/lib/yentrana/data/mock-data"
 import { TIER_CONFIG } from "@/lib/yentrana/auth/authority"
 import type { UserRole, UserTier } from "@/lib/yentrana/types"

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react"
 import Link from "next/link"
-import { useRailMitra } from "@/lib/yentrana/context/yentrana -context"
+import { useRailMitra } from "@/lib/yentrana/context/yentrana-context"
 import { canApproveBlocks } from "@/lib/yentrana/auth/authority"
 import {
   FileCheck2,

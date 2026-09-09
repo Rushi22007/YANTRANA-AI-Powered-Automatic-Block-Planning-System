@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from "react"
-import { useRailMitra } from "@/lib/yentrana/context/yentrana -context"
+import { useRailMitra } from "@/lib/yentrana/context/yentrana-context"
 import { ScrollText, ShieldCheck, Filter, Download, Calendar } from "lucide-react"
 
 export default function AuditPage() {

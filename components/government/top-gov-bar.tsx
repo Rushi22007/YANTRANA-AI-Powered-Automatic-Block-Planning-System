@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react"
 import { IndianFlagBadge } from "./emblems"
 import { Eye, Volume2, Globe } from "lucide-react"
 
-import { useYentrana } from "@/lib/yentrana/context/yentrana -context"
+import { useYentrana } from "@/lib/yentrana/context/yentrana-context"
 import { LANGUAGE_OPTIONS, SupportedLanguage } from "@/lib/yentrana/i18n/translations"
 
 /**

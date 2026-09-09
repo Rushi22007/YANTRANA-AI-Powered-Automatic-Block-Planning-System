@@ -2,7 +2,7 @@
 
 import React, { useState } from "react"
 import { usePathname } from "next/navigation"
-import { useRailMitra, SIH_DEMO_STEPS } from "@/lib/yentrana/context/yentrana -context"
+import { useRailMitra, SIH_DEMO_STEPS } from "@/lib/yentrana/context/yentrana-context"
 import { ChevronLeft, ChevronRight, Sparkles, ChevronDown, ChevronUp, Layers, CheckCircle2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
