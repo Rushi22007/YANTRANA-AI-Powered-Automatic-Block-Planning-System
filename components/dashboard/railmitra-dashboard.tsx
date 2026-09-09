@@ -20,12 +20,12 @@ import {
   Clock,
   ExternalLink,
 } from "lucide-react"
-import { useRailMitra } from "@/lib/railmitra/context/railmitra-context"
-import { MOCK_MAINTENANCE_NEEDS } from "@/lib/railmitra/data/mock-data"
-import type { Priority } from "@/lib/railmitra/types"
+import { useRailMitra } from "@/lib/yentrana/context/yentrana -context"
+import { MOCK_MAINTENANCE_NEEDS } from "@/lib/yentrana/data/mock-data"
+import type { Priority } from "@/lib/yentrana/types"
 
 export function RailMitraDashboard() {
-  const { optimizedPlan } = useRailMitra()
+  const { optimizedPlan, formattedLiveTime, t } = useRailMitra()
 
   const [selectedDeptFilter, setSelectedDeptFilter] = useState<string>("ALL")
   const [selectedPriorityFilter, setSelectedPriorityFilter] = useState<string>("ALL")
@@ -65,30 +65,33 @@ export function RailMitraDashboard() {
 
   return (
     <div className="flex flex-col gap-3 text-slate-800">
-      
+
       {/* Simulation Banner Notice */}
       <div className="flex items-center justify-between rounded bg-amber-50 px-3 py-1.5 border border-amber-200 text-xs">
         <div className="flex items-center gap-2">
           <span className="flex size-2 rounded-full bg-amber-500 animate-pulse" />
-          <span className="font-bold text-amber-900">SIMULATED / DEMO DATA ONLY</span>
-          <span className="text-amber-700 hidden sm:inline">• Central Railway • Pune Division • Karjat–Lonavala Corridor</span>
+          <span className="font-bold text-amber-900">{t("simNotice", "SIMULATED / DEMO DATA ONLY")}</span>
+          <span className="text-amber-700 hidden sm:inline">• {t("simCorridor", "Central Railway • Pune Division • Karjat–Lonavala Corridor")}</span>
         </div>
         <div className="flex items-center gap-3 text-[11px]">
-          <span className="text-slate-500 font-mono">Date: 07 May 2026 | 10:30 IST</span>
+          <span suppressHydrationWarning className="text-slate-700 font-mono font-bold flex items-center gap-1.5 bg-white/90 px-2 py-0.5 rounded border border-amber-300">
+            <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+            <span suppressHydrationWarning>{formattedLiveTime}</span>
+          </span>
           <Link href="/planner" className="font-bold text-blue-700 hover:underline inline-flex items-center gap-1">
-            Go to Planner <ArrowRight className="size-3" />
+            {t("goToPlanner", "Go to Planner")} <ArrowRight className="size-3" />
           </Link>
         </div>
       </div>
 
       {/* ── Top 6 KPI Cards matching Reference 1 ── */}
       <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-6">
-        
+
         {/* Card 1: Total Maintenance Tasks */}
         <div className="flex flex-col justify-between rounded border border-slate-200 bg-white p-3 shadow-xs">
           <div className="flex items-start justify-between">
             <div>
-              <p className="text-[11px] font-bold text-slate-700">कुल रखरखाव कार्य</p>
+              <p className="text-[11px] font-bold text-slate-700">{t("totalTasks", "Total Maintenance Tasks")}</p>
               <p className="text-[10px] text-slate-500 font-medium">Total Maintenance Tasks</p>
             </div>
             <span className="flex size-8 items-center justify-center rounded-full bg-blue-50 text-blue-700">
@@ -99,8 +102,7 @@ export function RailMitraDashboard() {
             <p className="text-2xl font-black text-slate-900 tracking-tight">248</p>
             <p className="flex items-center gap-1 text-[10px] font-bold text-emerald-700">
               <TrendingUp className="size-3" />
-              <span>12 इस सप्ताह</span>
-              <span className="font-normal text-slate-400">/ 12 this week</span>
+              <span>12 {t("thisWeek", "this week")}</span>
             </p>
           </div>
         </div>
@@ -109,7 +111,7 @@ export function RailMitraDashboard() {
         <div className="flex flex-col justify-between rounded border border-slate-200 bg-white p-3 shadow-xs">
           <div className="flex items-start justify-between">
             <div>
-              <p className="text-[11px] font-bold text-rose-700">महत्वपूर्ण कार्य</p>
+              <p className="text-[11px] font-bold text-rose-700">{t("criticalTasks", "Critical Tasks")}</p>
               <p className="text-[10px] text-slate-500 font-medium">Critical Tasks</p>
             </div>
             <span className="flex size-8 items-center justify-center rounded-full bg-rose-50 text-rose-600">
@@ -120,8 +122,7 @@ export function RailMitraDashboard() {
             <p className="text-2xl font-black text-rose-700 tracking-tight">12</p>
             <p className="flex items-center gap-1 text-[10px] font-bold text-rose-600">
               <TrendingUp className="size-3" />
-              <span>3 गंभीर</span>
-              <span className="font-normal text-slate-400">/ 3 urgent</span>
+              <span>3 {t("urgent", "urgent")}</span>
             </p>
           </div>
         </div>
@@ -130,7 +131,7 @@ export function RailMitraDashboard() {
         <div className="flex flex-col justify-between rounded border border-slate-200 bg-white p-3 shadow-xs">
           <div className="flex items-start justify-between">
             <div>
-              <p className="text-[11px] font-bold text-emerald-700">उपलब्ध ब्लॉक</p>
+              <p className="text-[11px] font-bold text-emerald-700">{t("availableBlocks", "Available Blocks")}</p>
               <p className="text-[10px] text-slate-500 font-medium">Available Blocks</p>
             </div>
             <span className="flex size-8 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
@@ -141,8 +142,7 @@ export function RailMitraDashboard() {
             <p className="text-2xl font-black text-slate-900 tracking-tight">18</p>
             <p className="flex items-center gap-1 text-[10px] font-bold text-emerald-700">
               <TrendingUp className="size-3" />
-              <span>4 इस सप्ताह</span>
-              <span className="font-normal text-slate-400">/ 4 this week</span>
+              <span>4 {t("thisWeek", "this week")}</span>
             </p>
           </div>
         </div>
@@ -151,7 +151,7 @@ export function RailMitraDashboard() {
         <div className="flex flex-col justify-between rounded border border-slate-200 bg-white p-3 shadow-xs">
           <div className="flex items-start justify-between">
             <div>
-              <p className="text-[11px] font-bold text-purple-700">संपत्ति उपलब्धता</p>
+              <p className="text-[11px] font-bold text-purple-700">{t("assetAvailability", "Asset Availability")}</p>
               <p className="text-[10px] text-slate-500 font-medium">Asset Availability</p>
             </div>
             <span className="flex size-8 items-center justify-center rounded-full bg-purple-50 text-purple-700">
@@ -163,7 +163,7 @@ export function RailMitraDashboard() {
             <p className="flex items-center gap-1 text-[10px] font-bold text-emerald-700">
               <TrendingUp className="size-3" />
               <span>↑ 2.1%</span>
-              <span className="font-normal text-slate-400">vs benchmark</span>
+              <span className="font-normal text-slate-400">{t("vsBenchmark", "vs benchmark")}</span>
             </p>
           </div>
         </div>
@@ -172,7 +172,7 @@ export function RailMitraDashboard() {
         <div className="flex flex-col justify-between rounded border border-slate-200 bg-white p-3 shadow-xs">
           <div className="flex items-start justify-between">
             <div>
-              <p className="text-[11px] font-bold text-amber-700">टकराव पहचाने</p>
+              <p className="text-[11px] font-bold text-amber-700">{t("conflictsDetected", "Conflicts Detected")}</p>
               <p className="text-[10px] text-slate-500 font-medium">Conflicts Detected</p>
             </div>
             <span className="flex size-8 items-center justify-center rounded-full bg-amber-50 text-amber-600">
@@ -182,7 +182,7 @@ export function RailMitraDashboard() {
           <div className="mt-2">
             <p className="text-2xl font-black text-amber-600 tracking-tight">7</p>
             <p className="text-[10px] font-bold text-amber-700">
-              ध्यान देने की आवश्यकता <span className="font-normal text-slate-400">/ Needs Attention</span>
+              {t("needsAttention", "Needs Attention")}
             </p>
           </div>
         </div>
@@ -191,7 +191,7 @@ export function RailMitraDashboard() {
         <div className="flex flex-col justify-between rounded border border-slate-200 bg-white p-3 shadow-xs">
           <div className="flex items-start justify-between">
             <div>
-              <p className="text-[11px] font-bold text-teal-700">AI अनुकूलन स्कोर</p>
+              <p className="text-[11px] font-bold text-teal-700">{t("aiScore", "AI Optimization Score")}</p>
               <p className="text-[10px] text-slate-500 font-medium">AI Optimization Score</p>
             </div>
             <span className="flex size-8 items-center justify-center rounded-full bg-teal-50 text-teal-700">
@@ -201,7 +201,7 @@ export function RailMitraDashboard() {
           <div className="mt-2">
             <p className="text-2xl font-black text-teal-700 tracking-tight">92<span className="text-sm font-normal text-slate-500">/100</span></p>
             <p className="text-[10px] font-bold text-teal-700">
-              उत्कृष्ट <span className="font-normal text-slate-400">/ Excellent</span>
+              {t("excellent", "Excellent")}
             </p>
           </div>
         </div>
@@ -209,15 +209,15 @@ export function RailMitraDashboard() {
 
       {/* ── Mid-Top: Corridor Overview Map + Maintenance Tasks Summary ── */}
       <div className="grid grid-cols-1 gap-3 lg:grid-cols-12">
-        
+
         {/* Left: Corridor Overview Map (5 cols) */}
         <div className="lg:col-span-5 flex flex-col rounded border border-slate-200 bg-white shadow-xs overflow-hidden">
           <div className="flex items-center justify-between border-b border-slate-200 bg-slate-50/70 px-3 py-2">
             <div>
-              <h3 className="text-xs font-bold text-slate-900">कॉरिडोर अवलोकन मानचित्र</h3>
-              <p className="text-[10px] text-slate-500">Corridor Overview Map</p>
+              <h3 className="text-xs font-bold text-slate-900">{t("corridorMapTitle", "Corridor Overview Map")}</h3>
+              <p className="text-[10px] text-slate-500">Mumbai – Pune Corridor</p>
             </div>
-            
+
             {/* Filters */}
             <div className="flex items-center gap-1 text-[10px]">
               <span className="text-slate-400">Corridor:</span>
@@ -231,7 +231,7 @@ export function RailMitraDashboard() {
           <div className="relative h-64 sm:h-72 w-full bg-[#1E293B] overflow-hidden p-3 flex flex-col justify-between">
             {/* Background Terrain Simulation */}
             <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:16px_16px]" />
-            
+
             {/* Top map controls */}
             <div className="relative z-10 flex items-center justify-between">
               <div className="rounded bg-slate-900/90 px-2 py-1 text-[10px] font-mono text-slate-300 border border-slate-700">
@@ -295,10 +295,10 @@ export function RailMitraDashboard() {
                         st.marker === "critical"
                           ? "#EF4444"
                           : st.marker === "high"
-                          ? "#F97316"
-                          : st.marker === "med"
-                          ? "#EAB308"
-                          : "#FFFFFF"
+                            ? "#F97316"
+                            : st.marker === "med"
+                              ? "#EAB308"
+                              : "#FFFFFF"
                       }
                       stroke="#0F172A"
                       strokeWidth="2"
@@ -355,8 +355,8 @@ export function RailMitraDashboard() {
         <div className="lg:col-span-7 flex flex-col rounded border border-slate-200 bg-white shadow-xs overflow-hidden">
           <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 bg-slate-50/70 px-3 py-2">
             <div>
-              <h3 className="text-xs font-bold text-slate-900">रखरखाव कार्य सारांश</h3>
-              <p className="text-[10px] text-slate-500">Maintenance Tasks Summary</p>
+              <h3 className="text-xs font-bold text-slate-900">{t("maintSummaryTitle", "Maintenance Tasks Summary")}</h3>
+              <p className="text-[10px] text-slate-500">Cross-Department Real-Time Requisitions</p>
             </div>
 
             {/* Department Filter Tabs */}
@@ -365,11 +365,10 @@ export function RailMitraDashboard() {
                 <button
                   key={dept}
                   onClick={() => setSelectedDeptFilter(dept)}
-                  className={`rounded px-2 py-0.5 font-bold transition-colors ${
-                    selectedDeptFilter === dept
-                      ? "bg-blue-700 text-white"
-                      : "bg-slate-200 text-slate-700 hover:bg-slate-300"
-                  }`}
+                  className={`rounded px-2 py-0.5 font-bold transition-colors ${selectedDeptFilter === dept
+                    ? "bg-blue-700 text-white"
+                    : "bg-slate-200 text-slate-700 hover:bg-slate-300"
+                    }`}
                 >
                   {dept === "ALL" ? "सभी / All" : dept}
                 </button>
@@ -399,18 +398,17 @@ export function RailMitraDashboard() {
                     task.priority === "CRITICAL"
                       ? "bg-rose-100 text-rose-800 border-rose-300"
                       : task.priority === "HIGH"
-                      ? "bg-orange-100 text-orange-800 border-orange-300"
-                      : task.priority === "MEDIUM"
-                      ? "bg-amber-100 text-amber-800 border-amber-300"
-                      : "bg-emerald-100 text-emerald-800 border-emerald-300"
+                        ? "bg-orange-100 text-orange-800 border-orange-300"
+                        : task.priority === "MEDIUM"
+                          ? "bg-amber-100 text-amber-800 border-amber-300"
+                          : "bg-emerald-100 text-emerald-800 border-emerald-300"
 
                   return (
                     <tr
                       key={task.taskId}
                       onClick={() => setActiveTaskKey(task.taskId)}
-                      className={`cursor-pointer transition-colors hover:bg-blue-50/50 ${
-                        isSelected ? "bg-blue-50 font-bold" : ""
-                      }`}
+                      className={`cursor-pointer transition-colors hover:bg-blue-50/50 ${isSelected ? "bg-blue-50 font-bold" : ""
+                        }`}
                     >
                       <td className="py-2 px-2.5 font-mono font-bold text-blue-900">{task.taskId}</td>
                       <td className="py-2 px-2">
@@ -452,7 +450,7 @@ export function RailMitraDashboard() {
 
       {/* ── Mid-Bottom: 4 Quad Cards matching Reference 1 ── */}
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        
+
         {/* Quad 1: AI Priority Engine */}
         <div className="flex flex-col justify-between rounded border border-slate-200 bg-white p-3 shadow-xs">
           <div>
@@ -521,8 +519,8 @@ export function RailMitraDashboard() {
           <div>
             <div className="flex items-center justify-between border-b border-slate-100 pb-2">
               <div>
-                <h4 className="text-xs font-bold text-slate-900">AI ब्लॉक योजनाकार (साप्ताहिक)</h4>
-                <p className="text-[10px] text-slate-500">AI Block Planner (Weekly)</p>
+                <h4 className="text-xs font-bold text-slate-900">{t("aiPlanner", "AI Block Planner")} (Weekly)</h4>
+                <p className="text-[10px] text-slate-500">CP-SAT Multi-Objective Optimizer</p>
               </div>
               <span className="rounded bg-purple-50 px-1.5 py-0.5 text-[9px] font-bold text-purple-700 border border-purple-200">
                 CP-SAT
@@ -590,8 +588,8 @@ export function RailMitraDashboard() {
           <div>
             <div className="flex items-center justify-between border-b border-slate-100 pb-2">
               <div>
-                <h4 className="text-xs font-bold text-slate-900">योजना तुलना (AI प्रभाव)</h4>
-                <p className="text-[10px] text-slate-500">Plan Comparison (AI Impact)</p>
+                <h4 className="text-xs font-bold text-slate-900">Plan Comparison (AI Impact)</h4>
+                <p className="text-[10px] text-slate-500">Benchmark vs Optimized</p>
               </div>
               <span className="rounded bg-emerald-50 px-1.5 py-0.5 text-[9px] font-bold text-emerald-700 border border-emerald-200">
                 Score: 92/100
@@ -655,8 +653,8 @@ export function RailMitraDashboard() {
           <div>
             <div className="flex items-center justify-between border-b border-slate-100 pb-2">
               <div>
-                <h4 className="text-xs font-bold text-slate-900">आगामी उपलब्ध ब्लॉक</h4>
-                <p className="text-[10px] text-slate-500">Upcoming Available Blocks</p>
+                <h4 className="text-xs font-bold text-slate-900">{t("upcomingBlocksTitle", "Upcoming Available Blocks")}</h4>
+                <p className="text-[10px] text-slate-500">Corridor Window Allocations</p>
               </div>
               <Clock className="size-3.5 text-slate-400" />
             </div>
@@ -800,3 +798,5 @@ export function RailMitraDashboard() {
     </div>
   )
 }
+
+export const YentranaDashboard = RailMitraDashboard

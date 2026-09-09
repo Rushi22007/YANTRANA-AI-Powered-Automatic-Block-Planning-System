@@ -2,8 +2,8 @@
 
 import React, { useState } from "react"
 import Link from "next/link"
-import { useRailMitra } from "@/lib/railmitra/context/railmitra-context"
-import { DEPARTMENTS } from "@/lib/railmitra/types"
+import { useRailMitra } from "@/lib/yentrana/context/yentrana -context"
+import { DEPARTMENTS } from "@/lib/yentrana/types"
 import { Package, ArrowRight, CheckCircle2, ShieldCheck, Clock, Users, Wrench, Layers, AlertTriangle } from "lucide-react"
 
 export default function WorkPackagesPage() {
@@ -81,13 +81,12 @@ export default function WorkPackagesPage() {
                     <h3 className="text-xs font-bold text-slate-800 mt-1">{wp.assetName}</h3>
                   </div>
 
-                  <span className={`rounded px-1.5 py-0.5 text-[10px] font-bold ${
-                    wp.priority === "CRITICAL"
-                      ? "bg-rose-100 text-rose-800"
-                      : wp.priority === "HIGH"
+                  <span className={`rounded px-1.5 py-0.5 text-[10px] font-bold ${wp.priority === "CRITICAL"
+                    ? "bg-rose-100 text-rose-800"
+                    : wp.priority === "HIGH"
                       ? "bg-orange-100 text-orange-800"
                       : "bg-amber-100 text-amber-800"
-                  }`}>
+                    }`}>
                     {wp.priority}
                   </span>
                 </div>
@@ -151,11 +150,10 @@ export default function WorkPackagesPage() {
                   type="button"
                   onClick={() => handleAddToCommonView(wp.packageId)}
                   disabled={isAdded}
-                  className={`inline-flex items-center gap-1 rounded px-3 py-1.5 text-xs font-bold transition-colors ${
-                    isAdded
-                      ? "bg-emerald-100 text-emerald-800 border border-emerald-300 cursor-default"
-                      : "bg-blue-700 text-white hover:bg-blue-800 shadow-xs"
-                  }`}
+                  className={`inline-flex items-center gap-1 rounded px-3 py-1.5 text-xs font-bold transition-colors ${isAdded
+                    ? "bg-emerald-100 text-emerald-800 border border-emerald-300 cursor-default"
+                    : "bg-blue-700 text-white hover:bg-blue-800 shadow-xs"
+                    }`}
                 >
                   {isAdded ? (
                     <>

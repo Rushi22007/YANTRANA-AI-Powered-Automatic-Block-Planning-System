@@ -56,7 +56,7 @@ export function RailRajbhashaTicker() {
         <div className="flex shrink-0 items-center gap-1.5 rounded-l bg-[#800000] px-2.5 py-1 font-bold text-white shadow-xs border-r border-amber-400/40">
           <span className="size-2 rounded-full bg-amber-400 animate-ping" />
           <Bell className="size-3 text-amber-300" />
-          <span className="tracking-wide">ताजा समाचार / LATEST</span>
+          <span className="tracking-wide">LATEST UPDATES</span>
         </div>
 
         {/* Ticker Content */}
@@ -81,8 +81,7 @@ export function RailRajbhashaTicker() {
                 >
                   {item.tag}
                 </span>
-                <span className="font-semibold text-amber-200">{item.text}</span>
-                <span className="text-slate-200">({item.textEn})</span>
+                <span className="font-semibold text-amber-200">{item.textEn}</span>
                 <span className="text-amber-400 font-bold">•</span>
               </Link>
             ))}
@@ -95,7 +94,7 @@ export function RailRajbhashaTicker() {
             href="/authority-matrix"
             className="inline-flex items-center gap-1 rounded bg-white/10 hover:bg-white/20 px-2 py-0.5 text-[10px] font-bold text-amber-200 transition-colors"
           >
-            <span>निर्देशिका / RBAC</span>
+            <span>Directives / RBAC</span>
             <ChevronRight className="size-3" />
           </Link>
         </div>

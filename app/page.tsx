@@ -111,7 +111,7 @@ export default function LandingPage() {
         {/* Core Product Message */}
         <div className="my-6 rounded-lg bg-slate-50 p-4 border border-slate-200 text-center dark:bg-slate-800/60 dark:border-slate-700">
           <p className="text-sm font-bold text-slate-900 dark:text-white">
-            “RailMitra AI does not automate the railway worker. It automates the complexity around the worker.”
+            “Yentrana AI does not automate the railway worker. It automates the complexity around the worker.”
           </p>
           <p className="text-xs font-semibold text-[#0B4182] dark:text-blue-400 mt-1">
             AI recommends. Railway authority decides.

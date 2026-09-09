@@ -4,7 +4,7 @@ import { Inter, JetBrains_Mono } from 'next/font/google'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { FiltersProvider } from '@/lib/filters'
 import { AppShell } from '@/components/shell/app-shell'
-import { RailMitraProvider } from '@/lib/railmitra/context/railmitra-context'
+import { RailMitraProvider } from '@/lib/yentrana/context/yentrana -context'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })

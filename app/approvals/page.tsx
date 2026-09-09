@@ -2,8 +2,8 @@
 
 import React, { useState } from "react"
 import Link from "next/link"
-import { useRailMitra } from "@/lib/railmitra/context/railmitra-context"
-import { canApproveBlocks } from "@/lib/railmitra/auth/authority"
+import { useRailMitra } from "@/lib/yentrana/context/yentrana -context"
+import { canApproveBlocks } from "@/lib/yentrana/auth/authority"
 import {
   FileCheck2,
   ArrowRight,
@@ -96,7 +96,7 @@ export default function ApprovalsPage() {
             SAFETY & LEGAL COMPLIANCE: ZERO AUTONOMOUS BLOCK GRANTS
           </p>
           <p className="text-amber-800 mt-0.5 text-[11px] leading-snug">
-            RailMitra AI acts solely as intelligent decision support. No block request is transmitted to the Control Office Application (COA) or physically granted on track without explicit approval by the Divisional Rolling Block Planning Officer.
+            Yentrana AI acts solely as intelligent decision support. No block request is transmitted to the Control Office Application (COA) or physically granted on track without explicit approval by the Divisional Rolling Block Planning Officer.
           </p>
         </div>
       </div>
@@ -121,15 +121,14 @@ export default function ApprovalsPage() {
 
           <div className="flex items-center gap-2">
             <span className="text-xs text-slate-500 font-medium">Status:</span>
-            <span className={`rounded px-2.5 py-1 text-xs font-black uppercase tracking-wider ${
-              isApproved
-                ? "bg-emerald-100 text-emerald-800 border border-emerald-300"
-                : isRejected
+            <span className={`rounded px-2.5 py-1 text-xs font-black uppercase tracking-wider ${isApproved
+              ? "bg-emerald-100 text-emerald-800 border border-emerald-300"
+              : isRejected
                 ? "bg-rose-100 text-rose-800 border border-rose-300"
                 : isRevision
-                ? "bg-amber-100 text-amber-800 border border-amber-300"
-                : "bg-blue-100 text-blue-800 border border-blue-300 animate-pulse"
-            }`}>
+                  ? "bg-amber-100 text-amber-800 border border-amber-300"
+                  : "bg-blue-100 text-blue-800 border border-blue-300 animate-pulse"
+              }`}>
               {optimizedPlan.status.replace(/_/g, " ")}
             </span>
           </div>

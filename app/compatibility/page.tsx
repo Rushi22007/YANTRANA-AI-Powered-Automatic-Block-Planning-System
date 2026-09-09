@@ -2,7 +2,7 @@
 
 import React, { useState } from "react"
 import Link from "next/link"
-import { useRailMitra } from "@/lib/railmitra/context/railmitra-context"
+import { useRailMitra } from "@/lib/yentrana/context/yentrana -context"
 import {
   GitMerge,
   ArrowRight,
@@ -74,11 +74,10 @@ export default function CompatibilityPage() {
 
           <button
             onClick={handleCreateCombinedPackage}
-            className={`inline-flex items-center gap-2 rounded px-4 py-2 text-xs font-bold transition-all ${
-              createdBundle
-                ? "bg-emerald-700 text-white cursor-default"
-                : "bg-purple-700 text-white hover:bg-purple-800 shadow-sm"
-            }`}
+            className={`inline-flex items-center gap-2 rounded px-4 py-2 text-xs font-bold transition-all ${createdBundle
+              ? "bg-emerald-700 text-white cursor-default"
+              : "bg-purple-700 text-white hover:bg-purple-800 shadow-sm"
+              }`}
           >
             {createdBundle ? (
               <>

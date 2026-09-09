@@ -2,7 +2,7 @@
 
 import React from "react"
 import Link from "next/link"
-import { useRailMitra } from "@/lib/railmitra/context/railmitra-context"
+import { useRailMitra } from "@/lib/yentrana/context/yentrana -context"
 import {
   FileText,
   ArrowRight,
@@ -87,7 +87,7 @@ export default function PlannerExplainPage() {
       {/* Core Product Message Banner */}
       <div className="rounded-lg border-2 border-blue-600 bg-gradient-to-r from-blue-900 to-slate-900 p-5 text-white shadow-md">
         <p className="text-base sm:text-lg font-black tracking-tight leading-snug">
-          “RailMitra AI does not automate the railway worker.
+          “Yentrana AI does not automate the railway worker.
           <br className="hidden sm:inline" /> It automates the complexity around the worker.”
         </p>
         <div className="mt-2 flex items-center gap-2">

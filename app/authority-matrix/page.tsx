@@ -2,7 +2,7 @@
 
 import React from "react"
 import Link from "next/link"
-import { useRailMitra } from "@/lib/railmitra/context/railmitra-context"
+import { useRailMitra } from "@/lib/yentrana/context/yentrana -context"
 import {
   TIER_CONFIG,
   WORKFLOW_STEP_AUTHORITIES,
@@ -10,9 +10,9 @@ import {
   canApproveBlocks,
   canRunOptimizer,
   canUpdateTelemetry,
-} from "@/lib/railmitra/auth/authority"
-import { MOCK_USER_PERSONAS } from "@/lib/railmitra/data/mock-data"
-import { UserRole, UserTier } from "@/lib/railmitra/types"
+} from "@/lib/yentrana/auth/authority"
+import { MOCK_USER_PERSONAS } from "@/lib/yentrana/data/mock-data"
+import { UserRole, UserTier } from "@/lib/yentrana/types"
 import {
   ShieldCheck,
   ShieldAlert,
@@ -59,7 +59,7 @@ export default function AuthorityMatrixPage() {
             अधिकार एवं अभिगम मैट्रिक्स • Role-Based Access Control & Authority Matrix
           </h1>
           <p className="text-xs text-slate-600 max-w-3xl mt-0.5">
-            Strictly derived from <strong>“RAILMITRA AI — ONE-PAGE TEAM CHEAT SHEET” (SIH26027)</strong>. Enforces department-specific authorities, mandatory human-in-the-loop approvals, and hard safety constraints across all 10 workflow steps.
+            Strictly derived from <strong>“YENTRANA AI — ONE-PAGE TEAM CHEAT SHEET” (SIH26027)</strong>. Enforces department-specific authorities, mandatory human-in-the-loop approvals, and hard safety constraints across all 10 workflow steps.
           </p>
         </div>
 
@@ -151,11 +151,10 @@ export default function AuthorityMatrixPage() {
               return (
                 <div
                   key={stepNum}
-                  className={`flex flex-col items-center justify-center p-2 rounded border text-center transition-all ${
-                    authorized
-                      ? "bg-emerald-950/60 border-emerald-500/60 text-emerald-200"
-                      : "bg-slate-800/80 border-slate-700 text-slate-400 opacity-60"
-                  }`}
+                  className={`flex flex-col items-center justify-center p-2 rounded border text-center transition-all ${authorized
+                    ? "bg-emerald-950/60 border-emerald-500/60 text-emerald-200"
+                    : "bg-slate-800/80 border-slate-700 text-slate-400 opacity-60"
+                    }`}
                   title={`${stepInfo.stepNameEn}: ${authorized ? "Action Authority Permitted" : "View-Only / Restricted"}`}
                 >
                   <div className="flex items-center gap-1 font-mono text-[10px] font-bold">
@@ -203,11 +202,10 @@ export default function AuthorityMatrixPage() {
             return (
               <div
                 key={t}
-                className={`flex flex-col justify-between rounded-xl border p-4 transition-all ${
-                  isCurrentTier
-                    ? "border-blue-600 bg-blue-50/70 shadow-sm ring-2 ring-blue-500 dark:bg-blue-950/30"
-                    : "border-slate-200 bg-white hover:border-slate-300 dark:border-slate-800 dark:bg-slate-900"
-                }`}
+                className={`flex flex-col justify-between rounded-xl border p-4 transition-all ${isCurrentTier
+                  ? "border-blue-600 bg-blue-50/70 shadow-sm ring-2 ring-blue-500 dark:bg-blue-950/30"
+                  : "border-slate-200 bg-white hover:border-slate-300 dark:border-slate-800 dark:bg-slate-900"
+                  }`}
               >
                 <div>
                   <div className="flex items-center justify-between gap-1 mb-2">
@@ -257,11 +255,10 @@ export default function AuthorityMatrixPage() {
                   <button
                     type="button"
                     onClick={() => setUserRole(examplePersona.role)}
-                    className={`mt-4 w-full rounded py-1.5 text-xs font-bold transition-colors ${
-                      isCurrentTier
-                        ? "bg-blue-600 text-white cursor-default"
-                        : "border border-slate-300 bg-slate-50 text-slate-700 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300"
-                    }`}
+                    className={`mt-4 w-full rounded py-1.5 text-xs font-bold transition-colors ${isCurrentTier
+                      ? "bg-blue-600 text-white cursor-default"
+                      : "border border-slate-300 bg-slate-50 text-slate-700 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300"
+                      }`}
                   >
                     {isCurrentTier ? "Currently Active" : `Switch to ${examplePersona.name.split(" ")[1] || examplePersona.name}`}
                   </button>
@@ -375,7 +372,7 @@ export default function AuthorityMatrixPage() {
                   1. AI Recommends. Railway Authority Decides.
                 </p>
                 <p className="text-[11px] leading-relaxed">
-                  RailMitra AI does not automate the railway worker; it automates the complexity around the worker. Block authorization remains strictly under authorized divisional officers.
+                  Yentrana AI does not automate the railway worker; it automates the complexity around the worker. Block authorization remains strictly under authorized divisional officers.
                 </p>
               </div>
 
@@ -384,7 +381,7 @@ export default function AuthorityMatrixPage() {
                   2. Safety Rules Are Hard Constraints.
                 </p>
                 <p className="text-[11px] leading-relaxed">
-                  RailMitra must not autonomously grant blocks, control signals or OHE power isolations, override rules, or dictate track maintenance procedures.
+                  Yentrana must not autonomously grant blocks, control signals or OHE power isolations, override rules, or dictate track maintenance procedures.
                 </p>
               </div>
 

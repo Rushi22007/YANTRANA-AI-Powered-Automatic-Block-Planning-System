@@ -2,8 +2,8 @@
 
 import React, { useState } from "react"
 import Link from "next/link"
-import { useRailMitra } from "@/lib/railmitra/context/railmitra-context"
-import { canUpdateTelemetry } from "@/lib/railmitra/auth/authority"
+import { useRailMitra } from "@/lib/yentrana/context/yentrana -context"
+import { canUpdateTelemetry } from "@/lib/yentrana/auth/authority"
 import {
   PlayCircle,
   ArrowRight,
@@ -275,11 +275,10 @@ export default function ExecutionPage() {
           <button
             onClick={handleTriggerDelay}
             disabled={delayTriggered}
-            className={`inline-flex items-center gap-2 rounded px-4 py-2 text-xs font-bold transition-all shrink-0 ${
-              delayTriggered
-                ? "bg-rose-200 text-rose-900 border border-rose-400 cursor-default"
-                : "bg-rose-700 text-white hover:bg-rose-800 shadow-xs"
-            }`}
+            className={`inline-flex items-center gap-2 rounded px-4 py-2 text-xs font-bold transition-all shrink-0 ${delayTriggered
+              ? "bg-rose-200 text-rose-900 border border-rose-400 cursor-default"
+              : "bg-rose-700 text-white hover:bg-rose-800 shadow-xs"
+              }`}
           >
             <AlertTriangle className="size-3.5" />
             <span>{delayTriggered ? "+45 MIN DELAY REPORTED" : "SIMULATE +45 MIN DELAY"}</span>

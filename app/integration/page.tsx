@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import { getAllAdapters } from "@/lib/railmitra/adapters"
+import { getAllAdapters } from "@/lib/yentrana/adapters"
 import { Database, ShieldAlert, CheckCircle2, RefreshCw, Cpu, Server, ExternalLink } from "lucide-react"
 
 export default function IntegrationPage() {
@@ -59,7 +59,7 @@ export default function IntegrationPage() {
           </div>
 
           <div className="rounded bg-blue-50/70 p-3 border border-blue-200 flex flex-col justify-center">
-            <span className="text-[10px] font-bold text-blue-900 uppercase block">Layer 2: RailMitra Adapter Interface</span>
+            <span className="text-[10px] font-bold text-blue-900 uppercase block">Layer 2: Yentrana Adapter Interface</span>
             <div className="my-3 font-mono text-xs font-bold text-blue-800 bg-white p-2 rounded border border-blue-300 shadow-xs">
               IDataSourceAdapter&lt;T&gt;
             </div>
@@ -69,7 +69,7 @@ export default function IntegrationPage() {
           </div>
 
           <div className="rounded bg-purple-50/70 p-3 border border-purple-200 flex flex-col justify-center">
-            <span className="text-[10px] font-bold text-purple-900 uppercase block">Layer 3: RailMitra Intelligence Engine</span>
+            <span className="text-[10px] font-bold text-purple-900 uppercase block">Layer 3: Yentrana Intelligence Engine</span>
             <div className="my-3 font-mono text-xs font-bold text-purple-800 bg-white p-2 rounded border border-purple-300 shadow-xs">
               CP-SAT Optimizer & Common View
             </div>

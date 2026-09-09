@@ -43,7 +43,7 @@ export function AshokaEmblem({ className = "h-11 w-8" }: { className?: string })
   return (
     <div className={`inline-flex flex-col items-center justify-center shrink-0 ${className}`}>
       <svg
-        viewBox="0 0 100 135"
+        viewBox="0 0 100 122"
         className="size-full text-slate-800 dark:text-slate-100"
         fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"
@@ -90,19 +90,6 @@ export function AshokaEmblem({ className = "h-11 w-8" }: { className?: string })
           letterSpacing="0.05em"
         >
           सत्यमेव जयते
-        </text>
-        <text
-          x="50"
-          y="126"
-          textAnchor="middle"
-          fontSize="6.5"
-          fontWeight="bold"
-          fontFamily="'Noto Sans', sans-serif"
-          fill="currentColor"
-          opacity="0.8"
-          letterSpacing="0.1em"
-        >
-          SATYAMEVA JAYATE
         </text>
       </svg>
     </div>

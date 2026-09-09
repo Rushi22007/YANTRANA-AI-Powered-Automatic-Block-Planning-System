@@ -2,7 +2,7 @@
 
 import React, { useState } from "react"
 import Link from "next/link"
-import { useRailMitra } from "@/lib/railmitra/context/railmitra-context"
+import { useRailMitra } from "@/lib/yentrana/context/yentrana -context"
 import {
   ShieldAlert,
   ArrowRight,
@@ -68,11 +68,10 @@ export default function ConstraintsPage() {
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`rounded px-2.5 py-1 font-bold transition-colors ${
-                selectedCategory === cat
-                  ? "bg-blue-700 text-white shadow-xs"
-                  : "bg-slate-100 text-slate-700 hover:bg-slate-200"
-              }`}
+              className={`rounded px-2.5 py-1 font-bold transition-colors ${selectedCategory === cat
+                ? "bg-blue-700 text-white shadow-xs"
+                : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                }`}
             >
               {cat}
             </button>
@@ -100,17 +99,16 @@ export default function ConstraintsPage() {
             c.severity === "HIGH"
               ? "bg-rose-100 text-rose-800 border-rose-300"
               : c.severity === "MEDIUM"
-              ? "bg-amber-100 text-amber-800 border-amber-300"
-              : "bg-slate-100 text-slate-800 border-slate-300"
+                ? "bg-amber-100 text-amber-800 border-amber-300"
+                : "bg-slate-100 text-slate-800 border-slate-300"
 
           return (
             <div
               key={c.constraintId}
-              className={`rounded-lg border p-4 shadow-xs transition-all ${
-                isHard
-                  ? "border-slate-300 bg-white hover:border-slate-400"
-                  : "border-slate-200 bg-slate-50/60"
-              }`}
+              className={`rounded-lg border p-4 shadow-xs transition-all ${isHard
+                ? "border-slate-300 bg-white hover:border-slate-400"
+                : "border-slate-200 bg-slate-50/60"
+                }`}
             >
               {/* Header */}
               <div className="flex items-start justify-between gap-2 border-b border-slate-100 pb-2.5">
@@ -125,9 +123,8 @@ export default function ConstraintsPage() {
                 </div>
 
                 <div className="flex flex-col items-end gap-1">
-                  <span className={`rounded px-1.5 py-0.5 text-[9px] font-black border uppercase tracking-wider ${
-                    isHard ? "bg-rose-700 text-white border-rose-800" : "bg-slate-200 text-slate-700 border-slate-300"
-                  }`}>
+                  <span className={`rounded px-1.5 py-0.5 text-[9px] font-black border uppercase tracking-wider ${isHard ? "bg-rose-700 text-white border-rose-800" : "bg-slate-200 text-slate-700 border-slate-300"
+                    }`}>
                     {isHard ? "HARD CONSTRAINT" : "SOFT CONSTRAINT"}
                   </span>
                   <span className={`rounded px-1.5 py-0.2 text-[9px] font-bold border ${severityBadge}`}>

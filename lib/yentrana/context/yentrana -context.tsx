@@ -26,6 +26,7 @@ import {
   MOCK_AUDIT_LOGS,
   MOCK_REPLAN_SCENARIO,
 } from "../data/mock-data"
+import { TRANSLATIONS, SupportedLanguage } from "../i18n/translations"
 
 export interface SIHStep {
   stepNumber: number
@@ -176,6 +177,12 @@ interface RailMitraContextType {
   jumpToSihStep: (stepNumber: number) => void
   nextSihStep: () => void
   prevSihStep: () => void
+  language: SupportedLanguage
+  setLanguage: (lang: SupportedLanguage) => void
+  t: (key: string, fallback?: string) => string
+  currentTime: Date
+  formattedLiveTime: string
+  formattedLiveDate: string
   objectiveWeights: AIWeightObjectives
   setObjectiveWeights: React.Dispatch<React.SetStateAction<AIWeightObjectives>>
   addWorkPackageToCommonView: (pkgId: string) => void
@@ -404,6 +411,63 @@ export function RailMitraProvider({ children }: { children: React.ReactNode }) {
     jumpToSihStep(currentSihStep - 1)
   }
 
+  // Multi-Language state (English, Hindi, Marathi, Tamil)
+  const [language, setLanguageState] = useState<SupportedLanguage>("English")
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("yentrana_lang") as SupportedLanguage
+      if (saved && TRANSLATIONS[saved]) {
+        setLanguageState(saved)
+      }
+    }
+  }, [])
+
+  const setLanguage = (lang: SupportedLanguage) => {
+    setLanguageState(lang)
+    if (typeof window !== "undefined") {
+      localStorage.setItem("yentrana_lang", lang)
+    }
+  }
+
+  const t = (key: string, fallback?: string): string => {
+    return TRANSLATIONS[language]?.[key] || fallback || TRANSLATIONS.English[key] || key
+  }
+
+  // Live operational time and date (Hydration-safe)
+  const [mounted, setMounted] = useState<boolean>(false)
+  const [currentTime, setCurrentTime] = useState<Date>(() => new Date(2026, 8, 9, 23, 30, 0))
+
+  useEffect(() => {
+    setMounted(true)
+    setCurrentTime(new Date())
+    const timer = setInterval(() => {
+      setCurrentTime(new Date())
+    }, 1000)
+    return () => clearInterval(timer)
+  }, [])
+
+  const formattedLiveTime = useMemo(() => {
+    const pad = (n: number) => n.toString().padStart(2, "0")
+    const hours = pad(currentTime.getHours())
+    const mins = pad(currentTime.getMinutes())
+    const secs = pad(currentTime.getSeconds())
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    const day = pad(currentTime.getDate())
+    const month = months[currentTime.getMonth()]
+    const year = currentTime.getFullYear()
+    return `${day} ${month} ${year} | ${hours}:${mins}:${secs} IST`
+  }, [currentTime])
+
+  const formattedLiveDate = useMemo(() => {
+    const pad = (n: number) => n.toString().padStart(2, "0")
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    const day = pad(currentTime.getDate())
+    const month = months[currentTime.getMonth()]
+    const year = currentTime.getFullYear()
+    return `${day} ${month} ${year}`
+  }, [currentTime])
+
   return (
     <RailMitraContext.Provider
       value={{
@@ -423,6 +487,12 @@ export function RailMitraProvider({ children }: { children: React.ReactNode }) {
         jumpToSihStep,
         nextSihStep,
         prevSihStep,
+        language,
+        setLanguage,
+        t,
+        currentTime,
+        formattedLiveTime,
+        formattedLiveDate,
         objectiveWeights,
         setObjectiveWeights,
         addWorkPackageToCommonView,
@@ -445,3 +515,9 @@ export function useRailMitra() {
   }
   return context
 }
+
+// Aliases for Yentrana branding
+export const useYentrana = useRailMitra
+export const YentranaProvider = RailMitraProvider
+export type YentranaContextType = RailMitraContextType
+

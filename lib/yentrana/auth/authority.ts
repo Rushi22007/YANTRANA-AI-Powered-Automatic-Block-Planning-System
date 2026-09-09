@@ -1,6 +1,6 @@
 /**
- * RAILMITRA AI — Role-Based Access Control (RBAC) & Authority Engine
- * Strictly aligned with "RAILMITRA AI — ONE-PAGE TEAM CHEAT SHEET" (SIH26027)
+ * YENTRANA AI — Role-Based Access Control (RBAC) & Authority Engine
+ * Strictly aligned with "YENTRANA AI — ONE-PAGE TEAM CHEAT SHEET" (SIH26027)
  * 
  * Defines 5 Operational Tiers:
  * 1. FIELD EXECUTION (Track Maintainer, Gangmate, Keyman, Patrolman, TRD Tech, S&T Maintainer)

@@ -4,16 +4,14 @@ import React, { useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import {
-  IndianRailwaysEmblem,
-  AshokaEmblem,
   DigitalIndiaLogo,
   Ux4gLogo,
   SihLogo,
 } from "@/components/government/emblems"
-import { useRailMitra } from "@/lib/railmitra/context/railmitra-context"
-import { MOCK_USER_PERSONAS } from "@/lib/railmitra/data/mock-data"
-import { TIER_CONFIG } from "@/lib/railmitra/auth/authority"
-import type { UserRole, UserTier } from "@/lib/railmitra/types"
+import { useRailMitra } from "@/lib/yentrana/context/yentrana -context"
+import { MOCK_USER_PERSONAS } from "@/lib/yentrana/data/mock-data"
+import { TIER_CONFIG } from "@/lib/yentrana/auth/authority"
+import type { UserRole, UserTier } from "@/lib/yentrana/types"
 import {
   ShieldCheck,
   ArrowRight,
@@ -65,20 +63,73 @@ export default function LoginPage() {
         {/* National Tricolor Accent Ribbon */}
         <div className="absolute top-0 left-0 right-0 ux4g-tricolor-strip" />
 
-        {/* Header */}
+        {/* Header with Same Logos as Portal Header */}
         <div className="flex flex-col items-center text-center pt-2 pb-5 border-b border-slate-200 dark:border-slate-800">
-          <div className="flex items-center gap-4 mb-2.5">
-            <IndianRailwaysEmblem className="size-14" />
-            <AshokaEmblem className="h-14 w-9 text-slate-900 dark:text-white" />
+          {/* 3 Logos Row matching the Header */}
+          <div className="flex items-center justify-center gap-4 sm:gap-7 mb-3 select-none flex-wrap">
+            {/* 1. Indian Railways Emblem & Text */}
+            <div className="flex items-center gap-2.5">
+              <img
+                src="/Indian Railways Red Emblem.png"
+                alt="Indian Railways"
+                className="size-11 sm:size-13 object-contain drop-shadow-xs shrink-0"
+              />
+              <div className="flex flex-col text-left leading-none">
+                <span className="text-xs sm:text-sm font-black tracking-wider text-slate-900 dark:text-white whitespace-nowrap">
+                  INDIAN RAILWAYS
+                </span>
+                <span className="text-[9.5px] sm:text-[10px] font-semibold text-slate-500 mt-1 whitespace-nowrap">
+                  Serving the Nation
+                </span>
+              </div>
+            </div>
+
+            {/* Divider */}
+            <div className="hidden sm:block h-9 w-px bg-slate-200 dark:bg-slate-700 shrink-0" />
+
+            {/* 2. Yantrana Center Logo */}
+            <div className="flex items-center gap-2.5">
+              <img
+                src="/yantrana-logo.png"
+                alt="Yantrana Logo"
+                className="h-10 sm:h-12 w-auto object-contain drop-shadow-xs shrink-0"
+              />
+            </div>
+
+            {/* Divider */}
+            <div className="hidden sm:block h-9 w-px bg-slate-200 dark:bg-slate-700 shrink-0" />
+
+            {/* 3. Ministry of Railways Official State Emblem & Text */}
+            <div className="flex items-center gap-2.5">
+              <img
+                src="/ministry-of-railways-emblem.png"
+                alt="Ministry of Railways"
+                className="h-10 sm:h-12 w-auto object-contain drop-shadow-2xs shrink-0"
+              />
+              <div className="flex flex-col text-left leading-none">
+                <span className="text-xs sm:text-sm font-black tracking-wider text-slate-900 dark:text-white whitespace-nowrap">
+                  MINISTRY OF RAILWAYS
+                </span>
+                <span className="text-[9.5px] sm:text-[10px] font-medium text-slate-500 mt-1 whitespace-nowrap">
+                  Government of India
+                </span>
+              </div>
+            </div>
           </div>
-          <p className="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider">
-            भारत सरकार | GOVERNMENT OF INDIA • रेल मंत्रालय • MINISTRY OF RAILWAYS
-          </p>
-          <h1 className="text-xl sm:text-2xl font-black text-[#8B0000] dark:text-red-400 tracking-tight mt-0.5">
-            RAILMITRA AI • SECURE ACCESS GATEWAY
+
+          <h1 className="text-lg sm:text-2xl font-black text-[#0B4182] dark:text-blue-400 tracking-tight mt-1">
+            AI Powered Automatic Block Planning System
           </h1>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-            Role-Based Access Control (RBAC) across 5 Operational Tiers (SIH26027 Cheat Sheet)
+          <p className="text-[11px] sm:text-xs font-semibold text-slate-600 dark:text-slate-400 mt-0.5">
+            Optimized Maintenance Block Planning for Maximum Asset Availability
+          </p>
+
+          <div className="mt-2.5 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-blue-900 dark:bg-blue-950/60 dark:text-blue-300 border border-blue-200 dark:border-blue-800 text-[10.5px] font-bold">
+            <ShieldCheck className="size-3.5 text-blue-700 dark:text-blue-400" />
+            <span>YENTRANA AI • SECURE ACCESS GATEWAY</span>
+          </div>
+          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
+            Role-Based Access Control (RBAC) across 5 Operational Tiers (SIH26027 Specification)
           </p>
         </div>
 
@@ -111,11 +162,10 @@ export default function LoginPage() {
             <button
               type="button"
               onClick={() => setActiveTierFilter("ALL")}
-              className={`px-3 py-1.5 rounded text-xs font-bold transition-all ${
-                activeTierFilter === "ALL"
-                  ? "bg-white text-slate-900 shadow-xs dark:bg-slate-700 dark:text-white"
-                  : "text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
-              }`}
+              className={`px-3 py-1.5 rounded text-xs font-bold transition-all ${activeTierFilter === "ALL"
+                ? "bg-white text-slate-900 shadow-xs dark:bg-slate-700 dark:text-white"
+                : "text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+                }`}
             >
               All Tiers ({personasList.length})
             </button>
@@ -127,11 +177,10 @@ export default function LoginPage() {
                   key={t}
                   type="button"
                   onClick={() => setActiveTierFilter(t)}
-                  className={`px-2.5 py-1.5 rounded text-xs font-bold transition-all ${
-                    isCurrent
-                      ? "bg-[#0B4182] text-white shadow-xs"
-                      : "text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
-                  }`}
+                  className={`px-2.5 py-1.5 rounded text-xs font-bold transition-all ${isCurrent
+                    ? "bg-[#0B4182] text-white shadow-xs"
+                    : "text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+                    }`}
                 >
                   {cfg.titleEn.split(" ")[0]}
                 </button>
@@ -152,11 +201,10 @@ export default function LoginPage() {
                   key={persona.role}
                   type="button"
                   onClick={() => setSelectedRole(persona.role as UserRole)}
-                  className={`flex flex-col text-left p-3 rounded-lg border transition-all ${
-                    isSelected
-                      ? "border-[#0B4182] bg-blue-50/80 shadow-xs ring-2 ring-[#0B4182] dark:bg-blue-950/40 dark:border-blue-400"
-                      : "border-slate-200 hover:border-slate-300 hover:bg-slate-50 dark:border-slate-800 dark:hover:bg-slate-800/50"
-                  }`}
+                  className={`flex flex-col text-left p-3 rounded-lg border transition-all ${isSelected
+                    ? "border-[#0B4182] bg-blue-50/80 shadow-xs ring-2 ring-[#0B4182] dark:bg-blue-950/40 dark:border-blue-400"
+                    : "border-slate-200 hover:border-slate-300 hover:bg-slate-50 dark:border-slate-800 dark:hover:bg-slate-800/50"
+                    }`}
                 >
                   <div className="flex items-center justify-between w-full">
                     <span className={`rounded px-1.5 py-0.2 text-[9px] font-extrabold uppercase tracking-wider ${tierCfg.badgeBg} ${tierCfg.badgeText} border ${tierCfg.badgeBorder}`}>

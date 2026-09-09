@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from "react"
-import { useRailMitra } from "@/lib/railmitra/context/railmitra-context"
+import { useRailMitra } from "@/lib/yentrana/context/yentrana -context"
 import { ScrollText, ShieldCheck, Filter, Download, Calendar } from "lucide-react"
 
 export default function AuditPage() {
@@ -46,11 +46,10 @@ export default function AuditPage() {
               <button
                 key={act}
                 onClick={() => setFilterAction(act)}
-                className={`rounded px-2.5 py-0.5 text-[11px] font-bold transition-colors ${
-                  filterAction === act
-                    ? "bg-blue-700 text-white"
-                    : "bg-slate-200 text-slate-700 hover:bg-slate-300"
-                }`}
+                className={`rounded px-2.5 py-0.5 text-[11px] font-bold transition-colors ${filterAction === act
+                  ? "bg-blue-700 text-white"
+                  : "bg-slate-200 text-slate-700 hover:bg-slate-300"
+                  }`}
               >
                 {act}
               </button>

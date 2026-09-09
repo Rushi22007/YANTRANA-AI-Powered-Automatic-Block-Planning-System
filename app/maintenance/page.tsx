@@ -2,8 +2,8 @@
 
 import React, { useState } from "react"
 import Link from "next/link"
-import { useRailMitra } from "@/lib/railmitra/context/railmitra-context"
-import { DEPARTMENTS } from "@/lib/railmitra/types"
+import { useRailMitra } from "@/lib/yentrana/context/yentrana -context"
+import { DEPARTMENTS } from "@/lib/yentrana/types"
 import { Wrench, Zap, Radio, AlertTriangle, ArrowRight, CheckCircle2, PlusCircle, ShieldCheck } from "lucide-react"
 
 export default function MaintenanceNeedPage() {
@@ -54,11 +54,10 @@ export default function MaintenanceNeedPage() {
         {/* Engineering */}
         <div
           onClick={() => setActiveTab("ENGINEERING")}
-          className={`cursor-pointer rounded border p-3 transition-all ${
-            activeTab === "ENGINEERING"
-              ? "border-sky-500 bg-sky-50/60 shadow-xs ring-1 ring-sky-400"
-              : "border-slate-200 bg-white hover:border-slate-300"
-          }`}
+          className={`cursor-pointer rounded border p-3 transition-all ${activeTab === "ENGINEERING"
+            ? "border-sky-500 bg-sky-50/60 shadow-xs ring-1 ring-sky-400"
+            : "border-slate-200 bg-white hover:border-slate-300"
+            }`}
         >
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -82,11 +81,10 @@ export default function MaintenanceNeedPage() {
         {/* TRD */}
         <div
           onClick={() => setActiveTab("TRD")}
-          className={`cursor-pointer rounded border p-3 transition-all ${
-            activeTab === "TRD"
-              ? "border-orange-500 bg-orange-50/60 shadow-xs ring-1 ring-orange-400"
-              : "border-slate-200 bg-white hover:border-slate-300"
-          }`}
+          className={`cursor-pointer rounded border p-3 transition-all ${activeTab === "TRD"
+            ? "border-orange-500 bg-orange-50/60 shadow-xs ring-1 ring-orange-400"
+            : "border-slate-200 bg-white hover:border-slate-300"
+            }`}
         >
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -110,11 +108,10 @@ export default function MaintenanceNeedPage() {
         {/* S&T */}
         <div
           onClick={() => setActiveTab("SNT")}
-          className={`cursor-pointer rounded border p-3 transition-all ${
-            activeTab === "SNT"
-              ? "border-emerald-500 bg-emerald-50/60 shadow-xs ring-1 ring-emerald-400"
-              : "border-slate-200 bg-white hover:border-slate-300"
-          }`}
+          className={`cursor-pointer rounded border p-3 transition-all ${activeTab === "SNT"
+            ? "border-emerald-500 bg-emerald-50/60 shadow-xs ring-1 ring-emerald-400"
+            : "border-slate-200 bg-white hover:border-slate-300"
+            }`}
         >
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -146,11 +143,10 @@ export default function MaintenanceNeedPage() {
               <button
                 key={d}
                 onClick={() => setActiveTab(d)}
-                className={`rounded px-2.5 py-0.5 text-[11px] font-bold transition-colors ${
-                  activeTab === d
-                    ? "bg-blue-700 text-white"
-                    : "bg-slate-200 text-slate-700 hover:bg-slate-300"
-                }`}
+                className={`rounded px-2.5 py-0.5 text-[11px] font-bold transition-colors ${activeTab === d
+                  ? "bg-blue-700 text-white"
+                  : "bg-slate-200 text-slate-700 hover:bg-slate-300"
+                  }`}
               >
                 {d === "ALL" ? "सभी / All (6)" : d}
               </button>
@@ -187,18 +183,17 @@ export default function MaintenanceNeedPage() {
                   item.priority === "CRITICAL"
                     ? "bg-rose-100 text-rose-800 border-rose-300"
                     : item.priority === "HIGH"
-                    ? "bg-orange-100 text-orange-800 border-orange-300"
-                    : item.priority === "MEDIUM"
-                    ? "bg-amber-100 text-amber-800 border-amber-300"
-                    : "bg-emerald-100 text-emerald-800 border-emerald-300"
+                      ? "bg-orange-100 text-orange-800 border-orange-300"
+                      : item.priority === "MEDIUM"
+                        ? "bg-amber-100 text-amber-800 border-amber-300"
+                        : "bg-emerald-100 text-emerald-800 border-emerald-300"
 
                 return (
                   <tr
                     key={item.taskId}
                     onClick={() => setSelectedTask(item.taskId)}
-                    className={`cursor-pointer transition-colors hover:bg-blue-50/50 ${
-                      isSelected ? "bg-blue-50/80 font-semibold" : ""
-                    }`}
+                    className={`cursor-pointer transition-colors hover:bg-blue-50/50 ${isSelected ? "bg-blue-50/80 font-semibold" : ""
+                      }`}
                   >
                     <td className="py-2.5 px-3 font-mono font-bold text-blue-900">{item.taskId}</td>
                     <td className="py-2.5 px-2">

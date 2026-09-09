@@ -2,7 +2,7 @@
 
 import React, { useState } from "react"
 import Link from "next/link"
-import { useRailMitra } from "@/lib/railmitra/context/railmitra-context"
+import { useRailMitra } from "@/lib/yentrana/context/yentrana -context"
 import {
   RefreshCw,
   ArrowRight,
@@ -171,13 +171,12 @@ export default function ReplanPage() {
               <div
                 key={alt.optionId}
                 onClick={() => setSelectedReplanOption(alt.optionId)}
-                className={`cursor-pointer rounded-lg border p-4 shadow-xs transition-all flex flex-col justify-between ${
-                  isSelected
-                    ? "border-blue-600 bg-blue-50/50 ring-2 ring-blue-500"
-                    : isRecommended
+                className={`cursor-pointer rounded-lg border p-4 shadow-xs transition-all flex flex-col justify-between ${isSelected
+                  ? "border-blue-600 bg-blue-50/50 ring-2 ring-blue-500"
+                  : isRecommended
                     ? "border-purple-300 bg-purple-50/30 hover:border-purple-400"
                     : "border-slate-200 bg-white hover:border-slate-300"
-                }`}
+                  }`}
               >
                 <div>
                   <div className="flex items-center justify-between border-b border-slate-100 pb-2 mb-2">
@@ -189,13 +188,12 @@ export default function ReplanPage() {
                         </span>
                       )}
                     </div>
-                    <span className={`rounded px-1.5 py-0.2 text-[9px] font-bold ${
-                      alt.trainImpact === "LOW"
-                        ? "bg-emerald-100 text-emerald-800"
-                        : alt.trainImpact === "MEDIUM"
+                    <span className={`rounded px-1.5 py-0.2 text-[9px] font-bold ${alt.trainImpact === "LOW"
+                      ? "bg-emerald-100 text-emerald-800"
+                      : alt.trainImpact === "MEDIUM"
                         ? "bg-amber-100 text-amber-800"
                         : "bg-rose-100 text-rose-800"
-                    }`}>
+                      }`}>
                       {alt.trainImpact} TRAIN IMPACT
                     </span>
                   </div>

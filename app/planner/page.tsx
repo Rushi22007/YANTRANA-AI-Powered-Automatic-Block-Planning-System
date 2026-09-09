@@ -2,8 +2,8 @@
 
 import React, { useState } from "react"
 import Link from "next/link"
-import { useRailMitra } from "@/lib/railmitra/context/railmitra-context"
-import { canRunOptimizer } from "@/lib/railmitra/auth/authority"
+import { useRailMitra } from "@/lib/yentrana/context/yentrana -context"
+import { canRunOptimizer } from "@/lib/yentrana/auth/authority"
 import {
   Cpu,
   ArrowRight,
@@ -129,9 +129,8 @@ export default function PlannerPage() {
                     key={h}
                     type="button"
                     onClick={() => setHorizon(h)}
-                    className={`flex-1 py-1 text-xs font-bold transition-colors ${
-                      horizon === h ? "bg-blue-700 text-white" : "bg-slate-50 text-slate-700 hover:bg-slate-100"
-                    }`}
+                    className={`flex-1 py-1 text-xs font-bold transition-colors ${horizon === h ? "bg-blue-700 text-white" : "bg-slate-50 text-slate-700 hover:bg-slate-100"
+                      }`}
                   >
                     {h}
                   </button>
@@ -296,13 +295,12 @@ export default function PlannerPage() {
               return (
                 <div
                   key={s}
-                  className={`flex items-center gap-2 ${
-                    isPast
-                      ? "text-emerald-800 font-medium"
-                      : isCurrent
+                  className={`flex items-center gap-2 ${isPast
+                    ? "text-emerald-800 font-medium"
+                    : isCurrent
                       ? "text-blue-900 font-bold"
                       : "text-slate-400 opacity-60"
-                  }`}
+                    }`}
                 >
                   <span className="size-2 rounded-full bg-current" />
                   <span>{s}</span>

@@ -4,12 +4,16 @@ import React, { useState, useEffect } from "react"
 import { IndianFlagBadge } from "./emblems"
 import { Eye, Volume2, Globe } from "lucide-react"
 
+import { useYentrana } from "@/lib/yentrana/context/yentrana -context"
+import { LANGUAGE_OPTIONS, SupportedLanguage } from "@/lib/yentrana/i18n/translations"
+
 /**
  * UX4G Standard Top Government Bar
  * Implements Government of India guidelines (GIGW 3.0 & WCAG 2.1 AA)
  * Features Tricolor Ribbon, Flag of India, High Contrast mode, and Accessibility font scaling.
  */
 export function TopGovBar() {
+  const { language, setLanguage, t } = useYentrana()
   const [fontSize, setFontSize] = useState<"normal" | "large" | "small">("normal")
   const [isHighContrast, setIsHighContrast] = useState<boolean>(false)
 
@@ -36,67 +40,48 @@ export function TopGovBar() {
   }, [isHighContrast])
 
   return (
-    <div className="w-full bg-[#1E293B] text-slate-200">
+    <div className="w-full bg-[#002147] text-slate-200">
       {/* UX4G Government of India Standard Tricolor Stripe */}
       <div className="ux4g-tricolor-strip" />
 
       {/* Bar Content */}
-      <div className="flex h-8 w-full items-center justify-between px-3 text-[11px] sm:px-6">
+      <div className="flex h-8 w-full items-center justify-between px-4 sm:px-6 text-[11px]">
         {/* Left: National Flag & Official Government Entity Titles */}
-        <div className="flex items-center gap-2 font-medium tracking-wide">
-          <IndianFlagBadge className="h-3.5 w-5 rounded-xs shadow-xs" />
-          <span className="font-semibold text-white">भारत सरकार</span>
-          <span className="text-slate-500">|</span>
-          <span className="tracking-wider text-slate-300">GOVERNMENT OF INDIA</span>
-          <span className="hidden text-slate-500 sm:inline">•</span>
-          <span className="hidden font-medium text-slate-300 sm:inline">रेल मंत्रालय</span>
-          <span className="hidden text-slate-500 md:inline">|</span>
-          <span className="hidden text-slate-400 md:inline">MINISTRY OF RAILWAYS</span>
+        <div className="flex items-center gap-2 font-medium tracking-wide shrink-0">
+          <IndianFlagBadge className="h-3.5 w-5 rounded-xs shadow-xs shrink-0" />
+          <span className="tracking-wider text-white font-bold text-[11px]">
+            {t("govIndia", "GOVERNMENT OF INDIA")}
+          </span>
         </div>
 
-        {/* Right: Accessibility Controls & Language Switcher */}
-        <div className="flex items-center gap-2.5 text-[10px] text-slate-300">
+        {/* Right: Accessibility Controls & Multi-Language Switcher */}
+        <div className="flex items-center gap-2.5 text-[10.5px] text-slate-200 shrink-0">
           <a
             href="#main-content"
-            className="hidden font-medium hover:text-white sm:inline focus:outline-none focus:ring-1 focus:ring-amber-400 px-1 rounded-xs"
+            className="hidden font-medium hover:text-white sm:inline focus:outline-none focus:ring-1 focus:ring-amber-400 px-1 rounded-xs transition-colors"
           >
-            Skip to Main Content
+            {t("skipMain", "Skip to Main Content")}
           </a>
 
-          <span className="hidden text-slate-600 sm:inline">|</span>
+          <span className="hidden text-blue-300/40 sm:inline">|</span>
 
           {/* Screen Reader Access */}
           <button
             onClick={() => alert("Screen Reader Accessibility active (GIGW 3.0 & WCAG 2.1 AA Compliant)")}
-            className="hidden items-center gap-1 hover:text-white md:inline-flex"
+            className="hidden items-center gap-1 hover:text-white sm:inline-flex cursor-pointer transition-colors"
             title="Screen Reader Access"
           >
-            <Volume2 className="size-3 text-slate-400" />
-            <span>Screen Reader Access</span>
+            <span>{t("screenReader", "Screen Reader Access")}</span>
           </button>
 
-          <span className="hidden text-slate-600 md:inline">|</span>
+          <span className="text-blue-300/40">|</span>
 
-          {/* High Contrast Toggle */}
-          <button
-            onClick={() => setIsHighContrast(!isHighContrast)}
-            className={`flex items-center gap-1 px-1.5 py-0.5 rounded-xs hover:text-white transition-colors ${
-              isHighContrast ? "bg-amber-400 text-black font-bold" : "hover:bg-slate-700/60"
-            }`}
-            title="Toggle High Contrast Mode (UX4G Standard)"
-          >
-            <Eye className="size-3" />
-            <span className="hidden sm:inline">Contrast</span>
-          </button>
-
-          <span className="text-slate-600">|</span>
-
-          {/* Font Resizer */}
-          <div className="flex items-center gap-0.5 font-mono font-bold text-slate-300">
+          {/* Font Resizer / Zoom Controls */}
+          <div className="flex items-center gap-1 font-mono font-bold text-slate-200">
             <button
               onClick={() => setFontSize("large")}
-              className={`px-1 rounded hover:text-white transition-colors ${
-                fontSize === "large" ? "bg-amber-400 text-black font-extrabold" : "hover:bg-slate-700/60"
+              className={`px-1 rounded hover:text-white transition-colors cursor-pointer ${
+                fontSize === "large" ? "bg-amber-400 text-black font-extrabold" : "hover:bg-white/10"
               }`}
               title="Increase font size (A+)"
             >
@@ -104,8 +89,8 @@ export function TopGovBar() {
             </button>
             <button
               onClick={() => setFontSize("normal")}
-              className={`px-1 rounded hover:text-white transition-colors ${
-                fontSize === "normal" ? "bg-slate-700 text-amber-300 font-extrabold" : "hover:bg-slate-700/60"
+              className={`px-1 rounded hover:text-white transition-colors cursor-pointer ${
+                fontSize === "normal" ? "bg-white/20 text-white font-extrabold" : "hover:bg-white/10"
               }`}
               title="Standard font size (A)"
             >
@@ -113,8 +98,8 @@ export function TopGovBar() {
             </button>
             <button
               onClick={() => setFontSize("small")}
-              className={`px-1 rounded hover:text-white transition-colors ${
-                fontSize === "small" ? "bg-amber-400 text-black font-extrabold" : "hover:bg-slate-700/60"
+              className={`px-1 rounded hover:text-white transition-colors cursor-pointer ${
+                fontSize === "small" ? "bg-amber-400 text-black font-extrabold" : "hover:bg-white/10"
               }`}
               title="Decrease font size (A-)"
             >
@@ -122,15 +107,23 @@ export function TopGovBar() {
             </button>
           </div>
 
-          <span className="text-slate-600">|</span>
+          <span className="text-blue-300/40">|</span>
 
-          {/* Bilingual Indicator (UX4G / Rajbhasha Standard) */}
-          <div
-            className="inline-flex items-center gap-1.5 rounded bg-slate-800 px-2 py-0.5 font-semibold text-slate-200 border border-slate-700 shadow-xs"
-            title="भारतीय रेल द्विभाषी पोर्टल: हिंदी एवं अंग्रेजी दोनों भाषाएं उपलब्ध (Rajbhasha Compliant)"
-          >
-            <Globe className="size-3 text-amber-400" />
-            <span>द्विभाषी / Bilingual</span>
+          {/* Multi-Language Selector: English, Hindi, Marathi, Tamil */}
+          <div className="flex items-center gap-1">
+            <Globe className="size-3 text-amber-400 shrink-0" />
+            <select
+              value={language}
+              onChange={(e) => setLanguage(e.target.value as SupportedLanguage)}
+              className="bg-[#001833] text-slate-200 text-[10.5px] font-semibold rounded px-1.5 py-0.5 border border-blue-400/40 hover:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400 cursor-pointer transition-colors"
+              title="Select Language / भाषा निवडा / மொழியைத் தேர்ந்தெடுக்கவும்"
+            >
+              {LANGUAGE_OPTIONS.map((opt) => (
+                <option key={opt.code} value={opt.code} className="bg-[#002147] text-white">
+                  {opt.nativeName} ({opt.label})
+                </option>
+              ))}
+            </select>
           </div>
         </div>
       </div>

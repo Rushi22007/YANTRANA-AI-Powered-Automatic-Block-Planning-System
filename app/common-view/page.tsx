@@ -2,7 +2,7 @@
 
 import React, { useState } from "react"
 import Link from "next/link"
-import { useRailMitra } from "@/lib/railmitra/context/railmitra-context"
+import { useRailMitra } from "@/lib/yentrana/context/yentrana -context"
 import {
   Layers,
   ArrowRight,
@@ -83,11 +83,10 @@ export default function CommonViewPage() {
 
           <button
             onClick={() => setHighlightOverlap(!highlightOverlap)}
-            className={`rounded px-2.5 py-1 font-bold transition-colors ${
-              highlightOverlap
-                ? "bg-amber-100 text-amber-900 border border-amber-300"
-                : "bg-slate-100 text-slate-600 hover:bg-slate-200"
-            }`}
+            className={`rounded px-2.5 py-1 font-bold transition-colors ${highlightOverlap
+              ? "bg-amber-100 text-amber-900 border border-amber-300"
+              : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+              }`}
           >
             {highlightOverlap ? "Hide Conflict Highlight" : "Highlight Overlap & Conflict"}
           </button>
@@ -123,7 +122,7 @@ export default function CommonViewPage() {
 
         <div className="overflow-x-auto p-4">
           <div className="min-w-[850px] space-y-4">
-            
+
             {/* Time Axis Bar */}
             <div className="relative h-6 w-full border-b border-slate-300">
               <div className="grid grid-cols-12 text-center font-mono text-[10px] font-bold text-slate-500">

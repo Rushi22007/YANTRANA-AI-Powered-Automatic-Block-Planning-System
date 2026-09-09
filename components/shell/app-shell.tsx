@@ -32,11 +32,18 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       {/* Top Government Bar */}
       <TopGovBar />
 
+      {/* Full-Width Institutional Header */}
+      <Header
+        collapsed={collapsed}
+        onToggleDesktop={() => setCollapsed((c) => !c)}
+        onToggleMobile={() => setMobileOpen(true)}
+      />
+
       <div className="flex flex-1 w-full overflow-x-hidden">
         {/* Desktop sidebar */}
         <aside
           className={cn(
-            "sticky top-8 hidden h-[calc(100vh-2rem)] shrink-0 border-r border-slate-800 transition-all duration-200 md:block z-20",
+            "sticky top-0 hidden h-[calc(100vh-140px)] shrink-0 border-r border-slate-800 transition-all duration-200 md:block z-20",
             collapsed ? "w-16" : "w-64"
           )}
         >
@@ -56,12 +63,6 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
         {/* Main column */}
         <div className="flex min-w-0 flex-1 flex-col">
-          <Header
-            collapsed={collapsed}
-            onToggleDesktop={() => setCollapsed((c) => !c)}
-            onToggleMobile={() => setMobileOpen(true)}
-          />
-
           <main id="main-content" className="flex-1 px-3 py-3 md:px-5 md:py-4">
             <div className="mx-auto w-full max-w-[1720px]">{children}</div>
           </main>
